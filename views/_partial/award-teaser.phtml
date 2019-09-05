@@ -1,0 +1,78 @@
+<?php
+/** @var $entity SMAwardEntity */
+$entity = $partialObj;
+//print_r($entity);
+?>
+<div class='award-teaser' >
+    <h2><?php echo $entity->title; ?></h2>
+    <?php echo $entity->content; ?>
+
+    <div class="link-box">
+     <?php
+
+        if(isset($entity->featuredImage)){
+            $entity->featuredImage->resize(850,1650,0);
+
+            $linkBegin = '';
+            $linkEnd = '';
+            if('' != $entity->link){
+                $linkBegin =  '<a href="'.$entity->link.'" target="_blank" >';
+                $linkEnd = '</a>';
+            }
+            echo'<div class="inner-image" >'.$linkBegin.$entity->featuredImage->imgtagsized.$linkEnd.'</div>';
+        }
+
+        if('' != $entity->link){
+            ?>
+            <a class="award-link" href="<?php echo $entity->link; ?>" target="_blank" >Link to website</a>
+            <?php
+        }
+
+         if(isset($entity->linktoproject) && '' != $entity->linktoproject){
+             $args = array(
+                 'include' => $entity->linktoproject, // id of a page, post, or custom type
+                 'post_type' => 'any'
+             );
+             $collection = get_posts($args);
+             //print_r($collection);
+             if(!empty($collection[0])){
+                 $linkedObject = new WpPostEntity();
+                 $linkedObject->init($collection[0]);
+                 //print_r($linkedObject);
+                 ?>
+                <a class="award-link" href="<?php echo $linkedObject->url; ?>"  >Link to project</a>
+             <?php
+             }
+         }
+
+
+
+        if('' != $entity->fileAttachment){
+            ?>
+            <a class="award-link" href="<?php echo $entity->fileAttachment->url; ?>" target="_blank" >Link to PDF</a>
+            <?php
+        }
+    ?>
+    </div>
+
+
+    <?php
+    /*
+    <a href="<?php echo $entity->url; ?>" >
+        <div class='thumb' >
+            <?php
+            if(isset($entity->imageGallery1[0])){
+                $entity->imageGallery1[0]->resize(550,400,1);
+                echo $entity->imageGallery1[0]->imgtagsized;
+            }else{
+                echo '<img src="'.TEMPLATE_URI.'/img/placeholder.png" />';
+            }
+            ?>
+        </div>
+        <div class='teaser-title' >
+            <?php echo $entity->title; ?><br>
+            <div class="award-date" ><?php echo $entity->date; ?></div>
+        </div>
+    </a>
+    */ ?>
+</div>

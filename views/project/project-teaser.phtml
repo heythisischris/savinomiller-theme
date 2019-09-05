@@ -1,0 +1,29 @@
+<?php
+/** @var $entity SMProjectEntity */
+$entity = $partialObj;
+//print_r($entity);
+?>
+<div class='project-teaser' >
+    <a href="<?php echo $entity->url; ?>" >
+        <div class='thumb' >
+            <?php
+            if(isset($entity->featuredImage)){
+                $entity->featuredImage->resize(550,550,1);
+                echo $entity->featuredImage->imgtagsized;
+            }
+            else if(isset($entity->imageGallery1[0])){
+                $entity->imageGallery1[0]->resize(550,550,1);
+                echo $entity->imageGallery1[0]->imgtagsized;
+            }else{
+                echo '<img src="'.TEMPLATE_URI.'/img/placeholder-square.png" />';
+            }
+
+
+            ?>
+        </div>
+        <div class='teaser-title' >
+           <?php echo $entity->title; ?><br>
+           <div class="project-date" ><?php echo $entity->projectDate; ?></div>
+        </div>
+    </a>
+</div>

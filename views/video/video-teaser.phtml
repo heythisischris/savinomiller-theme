@@ -1,0 +1,27 @@
+<?php
+/** @var $entity VideoEntity */
+$entity = $partialObj;
+?>
+
+<div id='video-player-<?php echo $entity->videoLink; ?>' class='video-player pressitem-thumbmedia video-teaser scroll-block' >
+
+    <div class='video-holder' >
+        <a href="javascript:playVideo(<?php echo $entity->videoLink; ?>)" >
+            <?php
+            if(isset($entity->featuredImage)){
+                $entity->featuredImage->resize(960,540,1);
+                echo $entity->featuredImage->imgtagsized;
+            }
+            ?>
+            <img class="video-play-btn-overlay" src="<?php echo TEMPLATE_URI; ?>/img/video-play-btn_960_540.png" />
+        </a>
+        <div class="iframe-target">
+
+        </div>
+    </div>
+    <div class="block-info" >
+        <div class="inner" >
+            <?php echo $entity->title; ?>
+        </div>
+    </div>
+</div>

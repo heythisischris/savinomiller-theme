@@ -1,0 +1,47 @@
+<?php
+$entity = $partialObj;
+?>
+<div id="slideshow" >
+    <?php
+    $homeUrl = home_url().'/';
+    foreach($entity->imageGallery1 as $image){
+        $image->resize(1600,2600,0);
+        //print_r($image);
+        $contentPath = str_replace($homeUrl,'',$image->urlsized);
+        $size = getimagesize($contentPath);
+        //print_r($size);
+        //echo $contentPath;
+        echo '<div class="slide">
+                <img data-orgHeight="'.$size[1].'" data-orgWidth="'.$size[0].'" data-media-id="'.$image->id.'" itemprop="image" src="'.$image->urlsized.'" />
+            </div>'."\n";
+    }
+    ?>
+    <div class="slideshow-prev slideshow-arrows" ><img src='<?php echo TEMPLATE_URI;?>/img/left-arrow.png' ></div>
+    <div class="slideshow-next slideshow-arrows" ><img src='<?php echo TEMPLATE_URI;?>/img/right-arrow.png' ></div>
+</div>
+<script>
+    $(document).ready(function(){
+
+
+        $('#slideshow').cycle({
+            fx: 'fade',
+            speed: 2000,
+            manualSpeed: 400,
+            paused: false,
+            slides: '.slide',
+            /*loop: 1,*/
+            pagerEvent: 'mouseover', // load image on mouseover instead of click
+            swipe: true,
+            prev: '.slideshow-prev',
+            next: '.slideshow-next',
+            autoHeight: "container"
+        });
+    });
+
+    function setOrgDimensions(){
+        $('.slide img').each(function(){
+            $(this).attr('data-orgHeight',$(this).height());
+            $(this).attr('data-orgWidth',$(this).width());
+        });
+    }
+</script>

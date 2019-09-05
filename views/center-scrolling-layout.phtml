@@ -1,0 +1,39 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: Till
+ * Date: 2/10/15
+ * Time: 7:00 PM
+ */
+
+// used by site view and video
+
+?>
+
+
+<article id='article-<?php echo $id; ?>' class="pressoverview middle-layer" >
+    <section class="interaction-layer" >
+
+        <div class="inner-col lower-sec">
+            <div class="subnav body-copy"  >
+                <?php wp_nav_menu(array('theme_location' => 'press-sub-menu')); ?>
+            </div>
+        </div>
+    </section>
+
+    <section id='presssoverview-wrapper' class='middle-layer-content-box body-copy ' >
+        <?php echo $collectionHtml; ?>
+
+    </section>
+
+    <section class='content-underlay' >
+        <?php //echo $this->slides; ?>
+    </section>
+</article>
+
+<script>
+    $(document).ready(function(){
+        $('#menu-item-160').addClass('current_page_item');
+    });
+</script>
+

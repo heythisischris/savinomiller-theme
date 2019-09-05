@@ -1,0 +1,20 @@
+<?PHP
+/** @var $partialObj WpEntity
+ *
+ */
+if(isset($partialObj->featuredImage)){
+    $partialObj->featuredImage->resize(1600,1032,1);
+    $hook = 0;
+    if(isset($partialObj->menuHook)){
+        $hook = $partialObj->menuHook;
+    }
+
+?>
+    <a name="block-<?php echo $hook; ?>" ></a>
+    <section id="block-<?php echo $hook; ?>" class="block-slide">
+        <div id="text-<?php echo $hook; ?>" class='hidden block-slide-text' ><?php echo MyHelpers::pToEmptyLine($partialObj->content); ?></div>
+        <div class="longscroll-image-slide" ><?php echo $partialObj->featuredImage->imgtagsized; ?></div>
+    </section>
+<?php
+}
+?>

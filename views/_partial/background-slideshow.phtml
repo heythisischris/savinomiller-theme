@@ -1,0 +1,54 @@
+<?php
+$entity = $partialObj;
+$entity->imageGallery2 = array();
+$imageGallery2 = $entity->getMetaValue('SRGBEpost-images-2');
+if(!empty($imageGallery2)){
+    if(is_array($imageGallery2)){
+        foreach($imageGallery2 as $image){
+            $entity->imageGallery2[] = new MediaEntity($image);
+        }
+    }else{
+        $entity->imageGallery2[] = new MediaEntity($imageGallery2);
+    }
+}
+
+?>
+
+<div id="background-slideshow-wrapper"  >
+    <div id="background-slideshow" class="background-slideshow" >
+        <?php
+        $homeUrl = home_url().'/';
+        if(!empty($entity->imageGallery2 )){
+            foreach($entity->imageGallery2 as $image){
+                $image->resize(1600,2600,0);
+                //print_r($image);
+                $contentPath = str_replace($homeUrl,'',$image->urlsized);
+                $size = getimagesize($contentPath);
+                //print_r($size);
+                //echo $contentPath;
+                // <img data-orgHeight="'.$size[1].'" data-orgWidth="'.$size[0].'" data-media-id="'.$image->id.'" itemprop="image" src="'.$image->urlsized.'" />
+
+                echo '<div class="slide" style="background:url('.$image->urlsized.')no-repeat center center fixed;background-size: cover;" >
+                </div>'."\n";
+            }
+        }
+        ?>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+
+
+        $('#background-slideshow').cycle({
+            fx: 'fade',
+            speed: 2000,
+            manualSpeed: 400,
+            paused: false,
+            slides: '.slide'
+            /*loop: 1,*/
+            //pagerEvent: 'mouseover', // load image on mouseover instead of click
+            //autoHeight: "container"
+        });
+    });
+
+</script>

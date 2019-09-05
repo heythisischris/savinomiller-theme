@@ -1,0 +1,99 @@
+<?php
+/**
+ * Template Name: Project Overview
+ * *
+ */
+
+get_header();
+$wpEntity->init();
+
+$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+include(TEMPLATE_DIR.'/controller/CatTagSearchController.php');
+$catTagSearchController = new CatTagSearchController();
+$catTagSearchController->postType = 'smprojectentity';
+$catTagSearchController->run($wpEntity);
+$casestudies = $catTagSearchController->entityCollection;
+
+
+$collectionHtml = '';
+if(!empty($casestudies)){
+    foreach($casestudies as $casestudy){
+        $collectionHtml.= PartialRenderer::render(TEMPLATE_DIR.'/views/project/project-teaser.phtml',$casestudy);
+    }
+}
+?>
+    <div id="main-content"  >
+        <div class="inner">
+            <div class="horizontal-slider" >
+                <?php echo $collectionHtml; ?>
+            </div>
+        </div>
+    </div>
+    <div id="mouse-floater" >
+        Mouse
+    </div>
+
+    <script>
+        var myInterval;
+        var lastMouseX = 0;
+        var lastMouseY = 0;
+
+        $(document).ready(function(){
+            myInterval = setInterval('mouseFollow()',10);
+            <?php
+            if(isset($catTagSearchController->currentCat)){
+            ?>
+            var currentCat = <?Php echo $catTagSearchController->currentCat->cat_ID; ?>;
+            $('.cat-item-'+currentCat).addClass('current-menu-item');
+            <?Php
+            }
+            ?>
+            $('.project-category-menu').fadeIn('slow');
+        });
+
+        function mouseFollow(){
+            var easingAmount = 0.3;
+
+            var mouseX = lastMouseX;
+            var mouseY = lastMouseY;
+
+            var targetX = parseInt($('#mouse-floater').css('left'));
+            var targetY = parseInt($('#mouse-floater').css('top'));
+
+
+            var xDistance = mouseX - targetX;
+            var yDistance = mouseY - targetY;
+            var distance = Math.sqrt(xDistance * xDistance + yDistance * yDistance);
+
+            //targetX = mouseX;
+            //targetY = mouseY;
+
+            if (distance > 1) {
+                targetX += xDistance * easingAmount;
+                targetY += yDistance * easingAmount;
+                $('#mouse-floater').css({'left':+targetX+'px','top':+targetY+'px'})
+            }
+
+            var hasOneVisible = false;
+            $('.project-teaser a').each(function(){
+                if(1==$(this).css('opacity')){
+                    $('#mouse-floater').text($(this).find('.teaser-title').text());
+                    $('#mouse-floater').css({'display':'block'});
+                    hasOneVisible = true;
+                }
+            });
+
+            if(hasOneVisible == false){
+                $('#mouse-floater').css({'display':'none'});
+            }
+        }
+
+        $(document).mousemove(function(event){
+            lastMouseX = event.pageX+25;
+            lastMouseY = event.pageY+25;
+        });
+    </script>
+
+<?php
+include('views/footer.phtml');

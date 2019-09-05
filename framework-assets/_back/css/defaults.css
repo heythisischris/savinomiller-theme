@@ -1,0 +1,37 @@
+/* Enable image placeholders */
+@-moz-document url-prefix(http), url-prefix(file) {
+    img:-moz-broken{
+        -moz-force-broken-image-icon:1;
+        width:24px;
+        height:24px;
+    }
+}
+
+#flags {
+    background: none repeat scroll 0 0 #006600;
+    color: #000000;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 150px;
+    z-index: 50000;
+}
+
+.hidden {
+	display:none;	
+}
+
+.clearfix {
+    content: " "; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+
+/* remove webkit rounded corners */
+input,
+textarea{
+    -webkit-appearance: none;
+    border-radius: 0;
+}

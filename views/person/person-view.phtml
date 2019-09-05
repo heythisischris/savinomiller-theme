@@ -1,0 +1,38 @@
+<?php
+/** @var $partialObj PersonEntity */
+$entity = $partialObj;
+//print_r($entity);
+
+$id = $entity->id;
+$corporateTitle = $entity->corporateTitle;
+$title = $entity->title;
+$corporateFunction = $entity->function;
+$url = $entity->url;
+$text = MyHelpers::pToEmptyLine($entity->content);
+?>
+
+<div id="bio-<?php echo $id; ?>" class="person-bio" >
+    <h1><b><?php echo $title; ?></b></h1>
+    <?php echo $corporateTitle; ?><br>
+    <?php
+    if('' != $corporateFunction){
+        echo $corporateFunction.'<br>';
+    }
+    if($entity->currentNode != $id){
+        ?>
+        <a href='<?php echo $url ?>' >Bio</a>
+    <?php
+    }else{
+        ?>
+        <a href='javascript:toggleBio()' >Bio</a>
+    <?php
+    }
+    ?>
+    <br>
+    <?php
+    if($entity->currentNode == $id){
+        echo '<div class="bio-text"><br>'.$text.'</div>';
+    }
+    ?>
+    <br>
+</div>

@@ -1,0 +1,48 @@
+<?php
+/** @var $entity SMPersonEntity */
+$entity = $partialObj;
+//print_r($entity);
+$resumeUrl = '';
+if('' != $entity->resume){
+    $resumeObj = new MediaEntity($entity->resume);
+    $resumeUrl = $resumeObj->url;
+}
+
+?>
+<div class='project-teaser person-teaser' >
+    <?php
+    if('' != $resumeUrl){
+        echo '<a href="'.$resumeUrl.'" target="_blank" >';
+    }
+    ?>
+    <div class='thumb' >
+        <?php
+        if(isset($entity->featuredImage)){
+            $entity->featuredImage->resize(500,500,1);
+            echo $entity->featuredImage->imgtagsized;
+        }else{
+            echo '<img src="'.TEMPLATE_URI.'/img/placeholder-square.png" />';
+        }
+        ?>
+    </div>
+    <?php
+    if('' != $resumeUrl){
+        echo '</a>';
+    }
+    ?>
+    <div class='person-info' >
+        <br>
+        <h2 ><?php echo $entity->title; ?></h2>
+        <span class="subline" ><?php echo $entity->corporateTitle; ?></span>
+        <div class='person-cv' >
+            <?php echo $entity->cv; ?>
+        </div>
+        <?php
+        if('' != $entity->email){
+        ?>
+        <a class="award-link person-link" href="mailto:<?php echo $entity->email; ?>" ><?php echo $entity->email; ?></a>
+        <?Php
+        }
+        ?>
+    </div>
+</div>

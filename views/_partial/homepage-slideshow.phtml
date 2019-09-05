@@ -1,0 +1,76 @@
+<?php
+$entity = $partialObj;
+?>
+<div id="slideshow" class="fullscreen-slideshow" >
+    <?php
+    $homeUrl = home_url().'/';
+    foreach($entity->slides as $slide){
+        //print_r($slide);
+        /*
+            [sectionTitle] => FNGA (Florida Natural Growers Association) Award of Excellence
+            [outboundLink] => http://www.fnga.org/recognition/landscape-awards/2010/winners.aspx
+            [imageId] => 403
+            [text] =>
+            [pages] =>
+         */
+
+        if('' != $slide['imageId']){
+            $image = new MediaEntity($slide['imageId']);
+            $image->resize(1600,2600,0);
+            //print_r($image);
+            $contentPath = str_replace($homeUrl,'',$image->urlsized);
+            $size = getimagesize($contentPath);
+
+            $cationContent = $slide['sectionTitle'];
+            $linkBegin = '';
+            $linkEnd = '';
+            if('' != $slide['outboundLink']){
+                $linkBegin =  '<a href="'.$slide['outboundLink'].'" target="_blank" >';
+                $linkEnd = '</a>';
+            }
+
+           // if('' != $slide['outboundLink']){
+                //$cationContent = '<a href="'.$slide['outboundLink'].'" target="_blank" >'.$slide['sectionTitle'].'</a>';
+           // }
+            //print_r($size);
+            //echo $contentPath;
+            echo '<div class="slide">
+                    '.$linkBegin.'
+                    <div class="slide-inner" style="background:url('.$image->urlsized.')no-repeat center center; background-size: cover;" >
+                        <div class="slide-caption" ><span>'.$cationContent.'</span></div>
+                        <img data-orgHeight="'.$size[1].'" data-orgWidth="'.$size[0].'" data-media-id="'.$image->id.'" itemprop="image" src="'.$image->urlsized.'" />
+                    </div>
+                    '.$linkEnd.'
+                </div>'."\n";
+        }
+    }
+    ?>
+    <div class="slideshow-prev slideshow-arrows" ><img src='<?php echo TEMPLATE_URI;?>/img/left-arrow.png' ></div>
+    <div class="slideshow-next slideshow-arrows" ><img src='<?php echo TEMPLATE_URI;?>/img/right-arrow.png' ></div>
+</div>
+<script>
+    $(document).ready(function(){
+
+
+        $('#slideshow').cycle({
+            fx: 'fade',
+            speed: 2000,
+            manualSpeed: 400,
+            paused: false,
+            slides: '.slide',
+            /*loop: 1,*/
+            pagerEvent: 'mouseover', // load image on mouseover instead of click
+            swipe: true,
+            prev: '.slideshow-prev',
+            next: '.slideshow-next',
+           /* autoHeight: "container" */
+        });
+    });
+
+    function setOrgDimensions(){
+        $('.slide img').each(function(){
+            $(this).attr('data-orgHeight',$(this).height());
+            $(this).attr('data-orgWidth',$(this).width());
+        });
+    }
+</script>

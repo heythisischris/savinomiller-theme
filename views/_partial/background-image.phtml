@@ -1,0 +1,28 @@
+<?php
+$entity = $partialObj;
+$entity->imageGallery2 = array();
+$imageGallery2 = $entity->getMetaValue('SRGBEpost-images-2');
+if(!empty($imageGallery2)){
+    if(is_array($imageGallery2)){
+        foreach($imageGallery2 as $image){
+            $entity->imageGallery2[] = new MediaEntity($image);
+        }
+    }else{
+        $entity->imageGallery2[] = new MediaEntity($imageGallery2);
+    }
+}
+
+?>
+
+<style>
+    body {
+    <?php
+        if(!empty($entity->imageGallery2 )){
+            foreach($entity->imageGallery2 as $image){
+                $image->resize(1600,2600,0);
+                echo 'background:url('.$image->urlsized.')no-repeat center center fixed;background-size: cover;" '."\n";
+            }
+        }
+    ?>
+    }
+</style>
