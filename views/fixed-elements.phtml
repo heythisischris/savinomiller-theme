@@ -4,157 +4,141 @@
 
 <div class="page-wrapper" >
 
-    <script src="<?php echo TEMPLATE_URI; ?>/js/scripts.js" ></script>
-    <a name="top"></a>
-    <header class='header' >
+<script src="<?php echo TEMPLATE_URI; ?>/js/scripts.js" ></script>
+<a name="top"></a>
+<header class='header' >
 
-        <div class='inner-topper'>
-            <img src="<?php echo TEMPLATE_URI; ?>/img/top-bar.png" />
+    <div class='inner'>
+
+            <div id='logo' >
+                <a href="<?php echo BASE_URL; ?>" >
+                <img src='<?php echo TEMPLATE_URI; ?>/img/Savino-Miller-Logo.svg' />
+                </a>
+            </div>
 
 
+
+        <div class="mobile-menu">
+            <div class="menu-toggle">
+                <a href="javascript:toggleMenu()" >
+                        <div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>
+                        <div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>
+                        <div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>
+                </a>
+            </div>
         </div>
 
-        <div class='inner'>
+        <div id="mobile-menu-wrapper" class="mobile-menu" >
+            <div id="mobile-menu-menu-container" >
 
-                <div id='logo' >
-                    <a href="<?php echo BASE_URL; ?>" >
-                    <img src='<?php echo TEMPLATE_URI; ?>/img/Savino-Miller-Logo.svg' />
-                    </a>
-                </div>
-
-            <div id="social-nav" >
-                <div class="social-wrapper">
-                    <a href='https://www.facebook.com/SavinoMiller' target="_blank">
-                        <span class="genericon genericon-facebook" ></span>
-                    </a>
-                    <a href='https://www.linkedin.com/company/savino-miller-design-studio' target="_blank">
-                        <span class="genericon genericon-linkedin" ></span>
-                    </a>
-                    <a href='https://instagram.com/savinomillerdesignstudio/' target="_blank">
-                        <span class="genericon genericon-instagram" ></span>
-                    </a>
-                    <a href='http://www.houzz.com/pro/savinomiller/savino-miller-design-studio' target="_blank">
-                        <img src="<?php echo TEMPLATE_URI; ?>/img/houzz-badge.png" />
-                    </a>
-                </div>
             </div>
-
-
-            <div class="mobile-menu">
-                <div class="menu-toggle">
-                    <a href="javascript:toggleMenu()" >Menu</a>
-                </div>
-            </div>
-
-            <div id="mobile-menu-wrapper" class="mobile-menu" >
-                <div id="mobile-menu-menu-container" >
-
-                </div>
-            </div>
-
-
-
-            <nav id="desktop-menu" class="main-menu" >
-                <?php wp_nav_menu(array('theme_location' => 'main-menu')); ?>
-                <div class="project-category-menu  menu" >
-                    <?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/project-category-nav.phtml',array()); ?>
-                </div>
-                <div id="current-cat-name" >
-
-                </div>
-                <div id="current-page-name" >
-                    <?php echo $entity->title; ?>
-                </div>
-                <div id="about-menu" class="" >
-                    <?Php echo wp_nav_menu(array('theme_location' => 'about-sub-menu')); ?>
-                </div>
-            </nav>
-
-            <div class="clearfix">&nbsp;</div>
-            <nav id="layer-menu-target" class="inner desktop-only">
-
-            </nav>
-            <nav id="layer-menu-target-2" class="inner desktop-only">
-
-            </nav>
         </div>
+
+
+
+        <nav id="desktop-menu" class="main-menu" >
+            <?php wp_nav_menu(array('theme_location' => 'main-menu')); ?>
+            <div class="project-category-menu  menu" >
+                <?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/project-category-nav.phtml',array()); ?>
+            </div>
+            <div id="current-cat-name" >
+
+            </div>
+            <div id="about-menu" class="" >
+                <?Php echo wp_nav_menu(array('theme_location' => 'about-sub-menu')); ?>
+            </div>
+        </nav>
 
         <div class="clearfix">&nbsp;</div>
-    </header>
+        <nav id="layer-menu-target" class="inner desktop-only">
+
+        </nav>
+        <nav id="layer-menu-target-2" class="inner desktop-only">
+
+        </nav>
+    </div>
+
+    <div class="clearfix">&nbsp;</div>
+</header>
 
 
 <script>
 
 
-    var menuState = 'in';
-    function toggleMenu(){
-        if(menuState == 'in'){
-            $('.project-nav').fadeOut('slow',function(){
-                $('#mobile-menu-menu-container').slideDown();
-            });
+var menuState = 'in';
+function toggleMenu(){
+    if(menuState == 'in'){
+        $('.project-nav').fadeOut('slow',function(){
+            $('#mobile-menu-menu-container').slideDown();
+        });
 
-            if($('.project-nav').length <= 0){
-                $('#mobile-menu-menu-container').slideDown();
-            }
-            menuState = 'out';
-        }else{
-            $('#mobile-menu-menu-container').slideUp('slow',function(){
-                $('.project-nav').fadeIn();
-            });
-
-            if($('.project-nav').length <= 0){
-                $('#mobile-menu-menu-container').slideUp();
-            }
-            menuState = 'in'
+        if($('.project-nav').length <= 0){
+            $('#mobile-menu-menu-container').slideDown();
         }
+        menuState = 'out';
+    }else{
+        $('#mobile-menu-menu-container').slideUp('slow',function(){
+            $('.project-nav').fadeIn();
+        });
 
-
+        if($('.project-nav').length <= 0){
+            $('#mobile-menu-menu-container').slideUp();
+        }
+        menuState = 'in'
     }
 
 
-    $(document).ready(function(){
-        var htmlMenu = $('#desktop-menu').html();
-        $('#mobile-menu-menu-container').html(htmlMenu);
-
-        var aboutMenu = $('#about-menu > div').html();
-        $('#desktop-menu #about-menu').remove();
-        var projectCategoryMenu = $('#desktop-menu .project-category-menu').html();
-        $('#desktop-menu .project-category-menu').remove();
-        $('#layer-menu-target').append('<div class="layer-menu project-category-menu" >'+projectCategoryMenu+'</div>');
-        $('#layer-menu-target-2').append('<div class="layer-menu menu-about-sub-menu-container" >'+aboutMenu+'</div>');
-
-        var layerMenuTargetHtml = $('#layer-menu-target').html();
-        $('#layer-menu-target').remove();
-
-        var layerMenuTargetHtml2 = $('#layer-menu-target-2').html();
-        $('#layer-menu-target-2').remove();
+}
 
 
-        $('.menu-item-10 a').attr('href','javascript:toggleCategories()');
-        $('.menu-item-22 a').attr('href','javascript:toggleAbout()');
+$(document).ready(function(){
+    var htmlMenu = $('#desktop-menu').html();
+    $('#mobile-menu-menu-container').html(htmlMenu);
 
-        $('.menu-item-10 a').after('<div id="layer-menu-target" class="desktop-only" >'+layerMenuTargetHtml+'</div>');
-        $('.menu-item-22 a').after('<div id="layer-menu-target-2" class="desktop-only" >'+layerMenuTargetHtml2+'</div>');
+    var aboutMenu = $('#about-menu > div').html();
+    $('#desktop-menu #about-menu').remove();
+    var projectCategoryMenu = $('#desktop-menu .project-category-menu').html();
+    $('#desktop-menu .project-category-menu').remove();
+    $('#layer-menu-target').append('<div class="layer-menu project-category-menu" >'+projectCategoryMenu+'</div>');
+    $('#layer-menu-target-2').append('<div class="layer-menu menu-about-sub-menu-container" >'+aboutMenu+'</div>');
 
-        $('#layer-menu-target .menu-about-sub-menu-container ul').addClass('sub-nav');
-        $('#layer-menu-target-2 .menu-about-sub-menu-container ul').addClass('sub-nav');
-    });
+    var layerMenuTargetHtml = $('#layer-menu-target').html();
+    $('#layer-menu-target').remove();
+
+    var layerMenuTargetHtml2 = $('#layer-menu-target-2').html();
+    $('#layer-menu-target-2').remove();
 
 
-    //$('.menu-main-menu-container').after($('#about-menu').html());
-    //$('#about-menu').remove();
-    //$('.main-menu #menu-about-sub-menu').addClass('sub-nav');
+    $('.menu-item-10 a').attr('href','javascript:toggleCategories()');
+    $('.menu-item-10 a').attr('class','menuOne');
+    $('.menu-item-22 a').attr('href','javascript:toggleAbout()');
+    $('.menu-item-22 a').attr('class','menuTwo');
+    $('.menu-item-813 a').attr('class','menuThree');
+    $('.menu-item-25 a').attr('class','menuFour');
+    $('.menu').append('<div id="hr"></div>');
 
-    function toggleCategories(){
-        $('.project-category-menu').toggle();
-        $('.menu-about-sub-menu-container').hide();
-    }
+    $('.menu-item-10 a').after('<div id="layer-menu-target" class="desktop-only" >'+layerMenuTargetHtml+'</div>');
+    $('.menu-item-22 a').after('<div id="layer-menu-target-2" class="desktop-only" >'+layerMenuTargetHtml2+'</div>');
 
-    function toggleAbout(){
+    $('#layer-menu-target .menu-about-sub-menu-container ul').addClass('sub-nav');
+    $('#layer-menu-target-2 .menu-about-sub-menu-container ul').addClass('sub-nav');
+});
 
-        $('.project-category-menu').hide();
-        $('.menu-about-sub-menu-container').toggle();
-    }
+
+//$('.menu-main-menu-container').after($('#about-menu').html());
+//$('#about-menu').remove();
+//$('.main-menu #menu-about-sub-menu').addClass('sub-nav');
+
+function toggleCategories(){
+    $('.project-category-menu').toggle();
+    $('.menu-about-sub-menu-container').hide();
+}
+
+function toggleAbout(){
+
+    $('.project-category-menu').hide();
+    $('.menu-about-sub-menu-container').toggle();
+}
 
 
 </script>

@@ -54,6 +54,8 @@ and (max-width : 800px){
 
     .mobile-menu {
         display: block;
+        margin-top: 16px;
+        margin-right: 20px;
     }
 
 
@@ -73,7 +75,7 @@ and (max-width : 800px){
 
     #mobile-menu-wrapper,
     #logo {
-        margin-left: 0;
+        margin-left: 19px;
     }
 
     .project-nav .inner-wrapper,
@@ -251,10 +253,10 @@ and (max-width : 600px) {
     }
 
     .slide-caption {
-        bottom: auto;
+        bottom: 110px;
         right: auto;
-        top:112px;
         left:15px;
+        padding:20px;
     }
 
 }
@@ -277,9 +279,7 @@ and (max-width : 400px) {
 
 
     header {
-        /*
-        min-height: 100px;
-        */
+        min-height: 84px;
     }
 
 
