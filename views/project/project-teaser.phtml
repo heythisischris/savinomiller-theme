@@ -7,13 +7,19 @@ $entity = $partialObj;
     <a href="<?php echo $entity->url; ?>" >
         <div class='thumb' >
             <?php
+            //$pagename = get_query_var('pagename');
             if(isset($entity->featuredImage)){
                 $entity->featuredImage->resize(550,550,1);
-                echo $entity->featuredImage->imgtagsized;
+                //echo $entity->featuredImage->imgtagsized;
+                $modifiedEntity = $entity->featuredImage->imgtagsized;
+                $modifiedEntity = substr($modifiedEntity,0,-1) . "style='height:450px;object-fit: cover;'>";
+                echo $modifiedEntity;
             }
             else if(isset($entity->imageGallery1[0])){
                 $entity->imageGallery1[0]->resize(550,550,1);
-                echo $entity->imageGallery1[0]->imgtagsized;
+                $modifiedEntity = $entity->imageGallery1[0]->imgtagsized;
+                $modifiedEntity = substr($modifiedEntity,0,-1) . "style='height:450px;object-fit: cover;'>";
+                echo $modifiedEntity;
             }else{
                 echo '<img src="'.TEMPLATE_URI.'/img/placeholder-square.png" />';
             }

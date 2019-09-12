@@ -1,0 +1,88 @@
+<?php
+$entity = $partialObj;
+?>
+<div id="single-project-wrapper" style="margin-top:120px;" >
+        <?php
+        $homeUrl = home_url().'/';
+
+        echo "<div class='single-project-title'>".$entity->title."</div>";
+        echo '<script>console.log('.json_encode($entity).');</script>';
+
+        $portraitImages=[];
+        $landscapeImages=[];
+        foreach($entity->imageGallery1 as $index=>$image){
+            $image->resize(1600,2600,0);
+            $contentPath = str_replace($homeUrl,'',$image->urlsized);
+            $size = getimagesize($contentPath);
+            $imageWidth=getimagesize($image->urlsized)[0];
+            $imageHeight=getimagesize($image->urlsized)[1];
+            if ($imageWidth>$imageHeight) {
+                $margins="margin-top:40px;margin-bottom:40px;";
+                if ($index==0) {
+                    $margins="margin-top:0px;margin-bottom:40px;";
+                }
+                else if ($index==count($entity->imageGallery1)) {
+                    $margins="margin-top:40px;margin-bottom:0px;";
+                }
+                $landscapeImages[] = '<img src="'.$image->urlsized.'" style="object-fit:cover;width:100%;'.$margins.'">';
+            }
+            else {
+                $portraitImages[] = '<img src="'.$image->urlsized.'" style="object-fit:cover;width:33.33%;height:1000px;margin-left:4%;margin-right:4%;margin-top:20px;margin-bottom:20px;">';
+            }
+            //echo '<script>console.log('.json_encode($image).');</script>';
+            //echo '<script>console.log('.json_encode(getimagesize($image->urlsized)).');</script>';
+        }
+
+        if (count($landscapeImages)==0) {
+            foreach($portraitImages as $index=>$image) {
+                if ($index<=2) {
+                    echo $image;
+                }
+            }
+            echo "<div class='single-project-description'>".MyHelpers::pToEmptyLine($entity->content)."</div>"; 
+        }
+
+        $nextPortraitStack=0;
+        foreach($landscapeImages as $index=>$image) {
+            if ($index==0) {
+                echo $image;
+                echo "<div class='single-project-description'>".MyHelpers::pToEmptyLine($entity->content)."</div>";
+            }
+            else if ($index==1) {
+                echo $image;
+            }
+            else if ($index==2) {
+                foreach($portraitImages as $innerIndex=>$innerImage) {
+                    if ($innerIndex==0||$innerIndex==1) {
+                        echo $innerImage;
+                    }
+                    else {
+                        if ($nextPortraitStack!=1) {
+                            echo $image;
+                            $nextPortraitStack=1;
+                        }
+                    }
+                }
+            }
+            else {
+                echo $image;
+            }
+
+            if ($nextPortraitStack==1) {                
+                foreach($portraitImages as $innerIndex=>$innerImage) {
+                    if ($innerIndex==2||$innerIndex==3) {
+                        echo $innerImage;
+                    }
+                    else {
+                        $nextPortraitStack=2;
+                    }
+                }
+            }
+        }
+        ?> 
+</div>
+<script>
+    $(document).ready(function(){
+
+    });
+</script>

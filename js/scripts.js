@@ -25,7 +25,8 @@ function closeInfo(){
 
 
 $(document).ready(function(){
-    executeAsInterval('calcHeightForLargeGrid');
+    //executeAsInterval('calcHeightForLargeGrid');
+    calcHeightForLargeGrid();
     //executeAsInterval('positionProjectnav');
 });
 
@@ -68,7 +69,7 @@ function calcHeightForLargeGrid(){
        highest.addClass('highest');
         $('.large-grid > div').each(function(){
             if(!$(this).hasClass('highest')){
-                $(this).css({'min-height':maxHeight+'px'});
+                //$(this).css({'min-height':maxHeight*0.75+'px'});
             }
         });
        oldMaxHeight = maxHeight;

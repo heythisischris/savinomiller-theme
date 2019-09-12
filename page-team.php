@@ -40,12 +40,17 @@ if(!empty($casestudies)){
 }
 ?>
 <?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/background-image.phtml',$entity); ?>
+<style>
+.large-grid .project-teaser {
+    width: 18%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+</style>
     <div id="main-content" >
-        <div class="inner">
+        <div class="inner" style="margin-top:-90px;">
             <div class="page-content body-copy large-master-type large-grid" >
                 <?Php echo $collectionHtml; ?>
-            </div>
-            <div class="page-content body-copy large-master-type large-grid secondary-grid" >
                 <?Php echo $collectionHtml2; ?>
             </div>
         </div>

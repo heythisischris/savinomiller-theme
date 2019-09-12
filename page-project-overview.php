@@ -25,7 +25,7 @@ if(!empty($casestudies)){
 ?>
 <div id="main-content"  >
     <div class="inner">
-        <div class="large-grid" >
+        <div class="large-grid" style="text-align:center" >
             <?php echo $collectionHtml; ?>
         </div>
     </div>

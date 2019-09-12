@@ -26,38 +26,8 @@ if(!empty($categories)){
 
 <div id="main-content"  >
 
-    <div class="underlay">
-
-    </div>
-
-    <div class="project-nav" >
-        <div class="inner-wrapper" >
-            <div class="control-bar" >
-                <div class="left-field">
-                    <a href="javascript:window.history.back()" class="back-button" ><img src="<?Php echo TEMPLATE_URI; ?>/img/arrow-back.png" /></a>
-                    <h1><?Php echo $entity->title; ?></h1>
-                </div>
-                <div class="right-field">
-                    <a href="javascript:showInfo()" class="show-info" ><img src="<?Php echo TEMPLATE_URI; ?>/img/info-icon.png" /></a>
-
-                    <a href="javascript:closeInfo()" class="close-info" ><img src="<?Php echo TEMPLATE_URI; ?>/img/close-x.png" /></a>
-
-                </div>
-                <div class="clearfix" >&nbsp;</div>
-            </div>
-
-            <div class="description body-copy" >
-                <div class="inner-description">
-                    <?Php echo MyHelpers::pToEmptyLine($entity->content); ?>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
     <div class="inner">
-       <?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/slideshow-fixed.phtml',$entity); ?>
+       <?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/single-project.phtml',$entity); ?>
     </div>
 
 </div>

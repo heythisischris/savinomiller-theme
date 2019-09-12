@@ -34,15 +34,15 @@ if('' != $entity->resume){
         <br>
         <h2 ><?php echo $entity->title; ?></h2>
         <span class="subline" ><?php echo $entity->corporateTitle; ?></span>
-        <div class='person-cv' >
-            <?php echo $entity->cv; ?>
-        </div>
-        <?php
+        <!--<div class='person-cv' >
+            <php echo $entity->cv; ?>
+        </div>-->
+        <!--php
         if('' != $entity->email){
         ?>
-        <a class="award-link person-link" href="mailto:<?php echo $entity->email; ?>" ><?php echo $entity->email; ?></a>
-        <?Php
+        <a class="award-link person-link" href="mailto:<php echo $entity->email; ?>" ><php echo $entity->email; ?></a>
+        <Php
         }
-        ?>
+        ?-->
     </div>
 </div>
