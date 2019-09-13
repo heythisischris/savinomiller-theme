@@ -1,11 +1,23 @@
 <?php
 $entity = $partialObj;
 ?>
+<style>
+@media only screen
+and (max-width : 1024px){
+    .portraitImage{
+        width: 48% !important;
+        height: 50% !important;
+    }
+}
+</style>
 <div id="single-project-wrapper" style="margin-top:120px;" >
         <?php
         $homeUrl = home_url().'/';
 
-        echo "<div class='single-project-title'>".$entity->title."</div>";
+        echo "<div class='single-project-title' style='line-height:30px;'>".$entity->title."</div>";
+        if ($entity->projectDate!=="") {
+            echo "<div class='single-project-subtitle'>".$entity->projectDate."</div>";
+        }
         echo '<script>console.log('.json_encode($entity).');</script>';
 
         $portraitImages=[];
@@ -17,9 +29,9 @@ $entity = $partialObj;
             $imageWidth=getimagesize($image->urlsized)[0];
             $imageHeight=getimagesize($image->urlsized)[1];
             if ($imageWidth>$imageHeight) {
-                $margins="margin-top:40px;margin-bottom:40px;";
+                $margins="margin-top:15px;margin-bottom:0px;";
                 if ($index==0) {
-                    $margins="margin-top:0px;margin-bottom:40px;";
+                    $margins="margin-top:15px;margin-bottom:40px;";
                 }
                 else if ($index==count($entity->imageGallery1)) {
                     $margins="margin-top:40px;margin-bottom:0px;";
@@ -27,7 +39,7 @@ $entity = $partialObj;
                 $landscapeImages[] = '<img src="'.$image->urlsized.'" style="object-fit:cover;width:100%;'.$margins.'">';
             }
             else {
-                $portraitImages[] = '<img src="'.$image->urlsized.'" style="object-fit:cover;width:33.33%;height:1000px;margin-left:4%;margin-right:4%;margin-top:20px;margin-bottom:20px;">';
+                $portraitImages[] = '<img class="portraitImage" src="'.$image->urlsized.'" style="object-fit:cover;width:49.5%;height:1000px;margin-top:15px;margin-bottom:0px;';
             }
             //echo '<script>console.log('.json_encode($image).');</script>';
             //echo '<script>console.log('.json_encode(getimagesize($image->urlsized)).');</script>';
@@ -35,26 +47,42 @@ $entity = $partialObj;
 
         if (count($landscapeImages)==0) {
             foreach($portraitImages as $index=>$image) {
-                if ($index<=2) {
-                    echo $image;
+                if ($index==0 || $index==2 || $index==4) {
+                    echo $image.'float:left;">';
+                }
+                else if ($index==1 || $index==3 || $index==5) {
+                    echo $image.'float:right;">';
+                }
+
+                if ($index==1) {
+                    echo "<div class='single-project-description' style='margin-top:15px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>";
                 }
             }
-            echo "<div class='single-project-description'>".MyHelpers::pToEmptyLine($entity->content)."</div>"; 
         }
 
         $nextPortraitStack=0;
         foreach($landscapeImages as $index=>$image) {
-            if ($index==0) {
+            if ($index==0 || $index==1) {
                 echo $image;
-                echo "<div class='single-project-description'>".MyHelpers::pToEmptyLine($entity->content)."</div>";
+                if ($index==0) {echo "<div class='single-project-description'>".MyHelpers::pToEmptyLine($entity->content)."</div>";}
+                if (!array_key_exists($index+1,$landscapeImages)) {
+                    foreach($portraitImages as $innerIndex=>$innerImage) {
+                        if ($innerIndex==0 || $innerIndex==2 || $innerIndex==4) {
+                            echo $innerImage.'float:left;">';
+                        }
+                        else if ($innerIndex==1 || $innerIndex==3 || $innerIndex==5) {
+                            echo $innerImage.'float:right;">';
+                        }
+                    }
+                }
             }
-            else if ($index==1) {
-                echo $image;
-            }
-            else if ($index==2) {
+            else if ($index==2 && count($portraitImages)>0) {
                 foreach($portraitImages as $innerIndex=>$innerImage) {
-                    if ($innerIndex==0||$innerIndex==1) {
-                        echo $innerImage;
+                    if ($innerIndex==0) {
+                        echo $innerImage.'float:left;">';
+                    }
+                    else if ($innerIndex==1) {
+                        echo $innerImage.'float:right;">';
                     }
                     else {
                         if ($nextPortraitStack!=1) {
@@ -81,8 +109,3 @@ $entity = $partialObj;
         }
         ?> 
 </div>
-<script>
-    $(document).ready(function(){
-
-    });
-</script>

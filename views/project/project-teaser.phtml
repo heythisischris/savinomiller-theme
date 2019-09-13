@@ -12,13 +12,13 @@ $entity = $partialObj;
                 $entity->featuredImage->resize(550,550,1);
                 //echo $entity->featuredImage->imgtagsized;
                 $modifiedEntity = $entity->featuredImage->imgtagsized;
-                $modifiedEntity = substr($modifiedEntity,0,-1) . "style='height:450px;object-fit: cover;'>";
+                $modifiedEntity = substr($modifiedEntity,0,-1) . "style='height:500px;object-fit: cover;'>";
                 echo $modifiedEntity;
             }
             else if(isset($entity->imageGallery1[0])){
                 $entity->imageGallery1[0]->resize(550,550,1);
                 $modifiedEntity = $entity->imageGallery1[0]->imgtagsized;
-                $modifiedEntity = substr($modifiedEntity,0,-1) . "style='height:450px;object-fit: cover;'>";
+                $modifiedEntity = substr($modifiedEntity,0,-1) . "style='height:500px;object-fit: cover;'>";
                 echo $modifiedEntity;
             }else{
                 echo '<img src="'.TEMPLATE_URI.'/img/placeholder-square.png" />';
@@ -29,7 +29,6 @@ $entity = $partialObj;
         </div>
         <div class='teaser-title' >
            <?php echo $entity->title; ?><br>
-           <div class="project-date" ><?php echo $entity->projectDate; ?></div>
         </div>
     </a>
 </div>

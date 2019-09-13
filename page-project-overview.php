@@ -18,13 +18,22 @@ $casestudies = $catTagSearchController->entityCollection;
 
 $collectionHtml = '';
 if(!empty($casestudies)){
-    foreach($casestudies as $casestudy){
-        $collectionHtml.= PartialRenderer::render(TEMPLATE_DIR.'/views/project/project-teaser.phtml',$casestudy);
+    if (count($orderArray)>1) {
+        $lookup = array_column($casestudies, NULL, 'title');
+        foreach($orderArray as $postOrder) {
+            if (array_key_exists($postOrder,$lookup)) {
+                $collectionHtml.= PartialRenderer::render(TEMPLATE_DIR.'/views/project/project-teaser.phtml',$lookup[$postOrder]);
+            }
+        }
     }
+    else {
+        foreach($casestudies as $index=>$casestudy){$collectionHtml.= PartialRenderer::render(TEMPLATE_DIR.'/views/project/project-teaser.phtml',$casestudy);}
+    }
+    //echo '<script>console.log('.json_encode($casestudies).');</script>';
 }
 ?>
-<div id="main-content"  >
-    <div class="inner">
+<div id="main-content">
+    <div class="inner" style="margin-left:26px;">
         <div class="large-grid" style="text-align:center" >
             <?php echo $collectionHtml; ?>
         </div>

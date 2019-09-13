@@ -31,7 +31,7 @@ and (max-width : 1024px){
 
     .large-grid .project-teaser:nth-of-type(5n+0),
     .large-grid .project-teaser {
-        margin-right:2%; width:23.5%;
+        margin-right:2%; width:29.5%;
         float:left;
         margin-bottom: 0px;
     }
@@ -182,7 +182,7 @@ and (max-width : 800px){
     .large-grid .project-teaser:nth-of-type(5n+0),
     .large-grid .project-teaser:nth-of-type(4n+0),
     .large-grid .project-teaser {
-        margin-right:1%; width:32.666666666666664%
+        margin-right:1%; width:47%
     }
 
     .large-grid .project-teaser:nth-of-type(3n+0){
@@ -231,7 +231,7 @@ and (max-width : 600px) {
     .large-grid .project-teaser:nth-of-type(4n+0),
     .large-grid .project-teaser:nth-of-type(5n+0),
     .large-grid .project-teaser {
-        margin-right:1%; width:49.5%
+        margin-right:1%; width:94%
     }
 
     .large-grid .project-teaser:nth-of-type(2n+0){
