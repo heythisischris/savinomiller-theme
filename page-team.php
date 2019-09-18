@@ -48,7 +48,7 @@ if(!empty($casestudies)){
 }
 </style>
     <div id="main-content" >
-        <div class="inner" style="margin-top:-90px;">
+        <div class="inner" style="margin-top:-90px;width: 99%;margin-left: -40px;">
             <div class="page-content body-copy large-master-type large-grid" >
                 <?Php echo $collectionHtml; ?>
                 <?Php echo $collectionHtml2; ?>

@@ -49,7 +49,7 @@ if(!empty($casestudies)){
 
             var currentCat = <?Php echo $catTagSearchController->currentCat->cat_ID; ?>;
             var currentCatName = '<?Php echo $catTagSearchController->currentCatName; ?>';
-            $('.cat-item-'+currentCat).addClass('current-menu-item');
+            //$('.cat-item-'+currentCat).addClass('current-menu-item');
             $('#desktop-menu #current-cat-name').html(currentCatName);
             myTrace(currentCatName);
             <?Php

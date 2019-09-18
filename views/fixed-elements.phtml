@@ -1,8 +1,5 @@
-
-
-
-
 <div class="page-wrapper" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="<?php echo TEMPLATE_URI; ?>/js/scripts.js" ></script>
 <a name="top"></a>
@@ -20,7 +17,7 @@
 
         <div class="mobile-menu">
             <div class="menu-toggle">
-                <a href="javascript:toggleMenu()" >
+                <a id="toggleMenuIcon" href="javascript:toggleMenu()" >
                         <div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>
                         <div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>
                         <div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>
@@ -34,6 +31,14 @@
             </div>
         </div>
 
+        
+        <div id="socialMedia">
+        <a href="https://www.instagram.com/savinomillerdesignstudio/" target="_blank" class="fa fa-instagram"></a>
+        <a href="https://www.facebook.com/SavinoMiller/" target="_blank" class="fa fa-facebook-square"></a>
+        <a href="https://www.linkedin.com/company/savino-miller-design-studio/" target="_blank" class="fa fa-linkedin-square"></a>
+        <a href="https://www.youtube.com/channel/UC9WMosWiKfj4z5KQcpjIM0A" target="_blank" class="fa fa-youtube-play"></a>
+        </div>
+        
 
 
         <nav id="desktop-menu" class="main-menu" >
@@ -68,6 +73,9 @@
 var menuState = 'in';
 function toggleMenu(){
     if(menuState == 'in'){
+        $('#toggleMenuIcon').html(`<div style="margin-top:12px"><div style="width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;transform: rotate(45deg);"></div>
+                                   <div style="width: 30px;height: 1px;background-color: #48B9C7;margin: -6px 0;transform: rotate(-45deg);"></div></div>`);
+
         $('.project-nav').fadeOut('slow',function(){
             $('#mobile-menu-menu-container').slideDown();
         });
@@ -77,6 +85,10 @@ function toggleMenu(){
         }
         menuState = 'out';
     }else{
+        
+        $('#toggleMenuIcon').html(`<div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>
+                                   <div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>
+                                   <div style="  width: 30px;height: 1px;background-color: #48B9C7;margin: 6px 0;"></div>`);
         $('#mobile-menu-menu-container').slideUp('slow',function(){
             $('.project-nav').fadeIn();
         });
@@ -93,7 +105,14 @@ function toggleMenu(){
 
 $(document).ready(function(){
     var htmlMenu = $('#desktop-menu').html();
-    $('#mobile-menu-menu-container').html(htmlMenu);
+    $('#mobile-menu-menu-container').html(htmlMenu+`
+        <div id="socialMedia2" style="margin-top:10px;">
+        <i onclick='javascript:window.open("https://www.instagram.com/savinomillerdesignstudio/","_blank")' style="font-size:20px;color:#AAAAAA;text-decoration:none;width:30px;" class="fa fa-instagram"></i>
+        <i onclick='javascript:window.open("https://www.facebook.com/SavinoMiller/","_blank")' class="fa fa-facebook"></i>
+        <i onclick='javascript:window.open("https://www.linkedin.com/company/savino-miller-design-studio/","_blank")' class="fa fa-linkedin"></i>
+        <i onclick='javascript:window.open("https://www.youtube.com/channel/UC9WMosWiKfj4z5KQcpjIM0A","_blank")' class="fa fa-youtube-play"></i>
+        </div>
+    `);
 
     var aboutMenu = $('#about-menu > div').html();
     $('#desktop-menu #about-menu').remove();
@@ -110,12 +129,7 @@ $(document).ready(function(){
 
 
     $('.menu-item-10 a').attr('href','javascript:toggleCategories()');
-    $('.menu-item-10 a').attr('class','menuOne');
     $('.menu-item-22 a').attr('href','javascript:toggleAbout()');
-    $('.menu-item-22 a').attr('class','menuTwo');
-    $('.menu-item-813 a').attr('class','menuThree');
-    $('.menu-item-25 a').attr('class','menuFour');
-    $('.menu').append('<div id="hr"></div>');
 
     $('.menu-item-10 a').after('<div id="layer-menu-target" class="desktop-only" >'+layerMenuTargetHtml+'</div>');
     $('.menu-item-22 a').after('<div id="layer-menu-target-2" class="desktop-only" >'+layerMenuTargetHtml2+'</div>');
@@ -123,6 +137,7 @@ $(document).ready(function(){
     $('#layer-menu-target .menu-about-sub-menu-container ul').addClass('sub-nav');
     $('#layer-menu-target-2 .menu-about-sub-menu-container ul').addClass('sub-nav');
 });
+
 
 
 //$('.menu-main-menu-container').after($('#about-menu').html());
@@ -140,8 +155,69 @@ function toggleAbout(){
     $('.menu-about-sub-menu-container').toggle();
 }
 
+toggleAbout();
+
 
 </script>
 
-
-
+<!--Place the hr underline under the active site-->
+<?php
+echo "<script>console.log('".$_SERVER['REQUEST_URI']."');</script>";
+if ((strpos($_SERVER['REQUEST_URI'],'portfolio') !== false) || (strpos($_SERVER['REQUEST_URI'],'projects') !== false)) {
+?>
+<style>
+#hr {  
+  margin-left: 5%;
+  width: 18.5%;
+  background: rgb(128,128,128,0.5);
+}
+</style>
+<?php
+}
+else if (strpos($_SERVER['REQUEST_URI'],'news') !== false) {
+?>
+<style>
+#hr {  
+  margin-left: 51%;
+  width: 9.5%;
+  background: rgb(128,128,128,0.5);
+}
+</style>
+<?php 
+}
+else if (strpos($_SERVER['REQUEST_URI'],'contact') !== false) {
+?>
+<style>
+#hr {  
+  margin-left: 66%;
+  width: 34%;
+  background: rgb(128,128,128,0.5);
+}
+</style>
+<?php 
+}
+else if ($_SERVER['REQUEST_URI'] !== '/') {
+?>
+<style>
+#hr {  
+  margin-left: 28.5%;
+  width: 17.5%;
+  background: rgb(128,128,128,0.5);
+}
+</style>
+<?php 
+}
+?>
+<script>
+setTimeout(function() {
+$('.menu').append('<div id="hr"></div>');
+}, 600);
+</script>
+<style>
+@media only screen
+and (max-width : 600px) {
+    #hr {
+        display: none;
+    }
+}
+</style>
