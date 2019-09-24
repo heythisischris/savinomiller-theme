@@ -42,9 +42,9 @@ if(!empty($casestudies)){
 <?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/background-image.phtml',$entity); ?>
 <style>
 .large-grid .project-teaser {
-    width: 18%;
-    padding-left: 2%;
-    padding-right: 2%;
+    max-width: 397px;
+    padding-left: 15px;
+    padding-right: 10px;
 }
 </style>
     <div id="main-content" >

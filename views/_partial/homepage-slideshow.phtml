@@ -2,6 +2,9 @@
 $entity = $partialObj;
 ?>
 <div id="slideshow" class="fullscreen-slideshow" >
+
+<div class="slideshow-prev slideshow-arrows" ><img src='<?php echo TEMPLATE_URI;?>/img/left-arrow.png' ></div>
+    <div class="slideshow-next slideshow-arrows" ><img src='<?php echo TEMPLATE_URI;?>/img/right-arrow.png' ></div>
     <?php
     $homeUrl = home_url().'/';
     foreach($entity->slides as $slide){
@@ -45,8 +48,6 @@ $entity = $partialObj;
         }
     }
     ?>
-    <div class="slideshow-prev slideshow-arrows" ><img src='<?php echo TEMPLATE_URI;?>/img/left-arrow.png' ></div>
-    <div class="slideshow-next slideshow-arrows" ><img src='<?php echo TEMPLATE_URI;?>/img/right-arrow.png' ></div>
 </div>
 <script>
     $(document).ready(function(){

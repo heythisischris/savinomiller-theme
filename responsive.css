@@ -140,10 +140,9 @@ and (max-width : 800px){
     }
 
 
-    #main-content .inner {
-        margin-left: 2% !important;
-        margin-right: 2%;
-        width: 82% !important;
+    #main-content .inner {    
+        margin-left: 5px !important;
+        margin-right: 22px !important;
     }
 
     .page-template-page-awardspress .page-content,
@@ -173,7 +172,7 @@ and (max-width : 800px){
     .single-smprojectentity #main-content .inner,
     #main-content .inner.fullscreen {
         margin-left: 0 !important;
-        margin-right: 0;
+        margin-right: 0 !important;
     }
 
     .single-smpersonentity .large-grid,
@@ -253,7 +252,7 @@ and (max-width : 600px) {
     }
 
     .slideshow-arrows {
-       display: none;
+        display: none;
     }
 
     .slide-caption {
@@ -291,7 +290,7 @@ and (max-width : 400px) {
 
 
     .page-template-page-team .large-grid .project-teaser {
-        width:100%;
+        width:80vw;
     }
 
     .page-template-page-team .large-grid .project-teaser:nth-of-type(3n+0){

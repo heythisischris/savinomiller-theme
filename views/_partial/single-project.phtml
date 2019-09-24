@@ -2,21 +2,57 @@
 $entity = $partialObj;
 ?>
 <style>
+    
+.single-project-title {
+    line-height:25px;margin-left:28px;
+}
+.single-project-subtitle {
+    margin-left:28px;
+}
+.single-project-description{
+margin-top:15px;margin-bottom:0px;
+}
 @media only screen
 and (max-width : 1024px){
     .portraitImage{
         width: 48% !important;
         height: 50% !important;
     }
+    #dynamicDown{
+        display: none;
+    }
+    .single-project-title {
+        margin-left:5px;
+    }
+    .single-project-subtitle {
+        margin-left:5px;
+    }
+    .single-project-description{
+        margin-left: 7px;
+        margin-right: 7px;
+        width: auto;
+    }
+}
+p {
+    margin-block-start: 0em;
+    margin-block-end: -0.4em;
 }
 </style>
 <div id="single-project-wrapper" style="margin-top:120px;" >
         <?php
         $homeUrl = home_url().'/';
 
-        echo "<div class='single-project-title' style='line-height:30px;'>".$entity->title."</div>";
+        echo "<div class='single-project-title'>".$entity->title."</div>";
         if ($entity->projectDate!=="") {
-            echo "<div class='single-project-subtitle'>".$entity->projectDate."</div>";
+            if (strpos($entity->projectDate,"(")!==false) {
+                $awardArray = explode('(',$entity->projectDate);
+                echo "<div class='single-project-subtitle'>".substr($awardArray[1],0,-1)."</div>";
+                echo "<div class='single-project-subtitle'>".$awardArray[0]."</div>";
+
+            }
+            else {
+                echo "<div class='single-project-subtitle'>".$entity->projectDate."</div>";
+            }
         }
         echo '<script>console.log('.json_encode($entity).');</script>';
 
@@ -28,18 +64,22 @@ and (max-width : 1024px){
             $size = getimagesize($contentPath);
             $imageWidth=getimagesize($image->urlsized)[0];
             $imageHeight=getimagesize($image->urlsized)[1];
-            if ($imageWidth>$imageHeight) {
+            $anchorIndex=$index+1;
+            if ($imageWidth>$imageHeight && $image->url!=="http://savinomiller.com/cms-site-admin/wp-content/uploads/2015/03/Site-Photo-085.jpg") {
+                echo '<script>console.log('.json_encode($image).');</script>';
                 $margins="margin-top:15px;margin-bottom:0px;";
                 if ($index==0) {
-                    $margins="margin-top:15px;margin-bottom:40px;";
+                    $margins="margin-top:0px;margin-bottom:0px;";
+                    $anchorIndex=0;
                 }
                 else if ($index==count($entity->imageGallery1)) {
-                    $margins="margin-top:40px;margin-bottom:0px;";
+                    $margins="margin-top:0px;margin-bottom:0px;";
                 }
-                $landscapeImages[] = '<img src="'.$image->urlsized.'" style="object-fit:cover;width:100%;'.$margins.'">';
+                $landscapeImages[] = '<img id="'.$anchorIndex.'" src="'.$image->urlsized.'" style="object-fit:cover;width:100%;'.$margins.'">';
             }
             else {
-                $portraitImages[] = '<img class="portraitImage" src="'.$image->urlsized.'" style="object-fit:cover;width:49.5%;height:1000px;margin-top:15px;margin-bottom:0px;';
+                if ($index==0) {$anchorIndex=0;}
+                $portraitImages[] = '<img id="'.$anchorIndex.'" class="portraitImage" src="'.$image->urlsized.'" style="object-fit:cover;width:49.5%;height:1000px;margin-top:15px;margin-bottom:0px;';
             }
             //echo '<script>console.log('.json_encode($image).');</script>';
             //echo '<script>console.log('.json_encode(getimagesize($image->urlsized)).');</script>';
@@ -56,16 +96,16 @@ and (max-width : 1024px){
                 }
 
                 if ($index==1) {
-                    echo "</div><div class='single-project-description' style='margin-top:105px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>";
+                    echo "</div><div id='1' class='single-project-description' style='margin-top:105px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>";
                 }
             }
         }
-
+        echo '<script>console.log('.json_encode($portraitImages).');</script>';
         $nextPortraitStack=0;
         foreach($landscapeImages as $index=>$image) {
             if ($index==0 || $index==1) {
                 echo $image;
-                if ($index==0) {echo "<div class='single-project-description'>".MyHelpers::pToEmptyLine($entity->content)."</div>";}
+                if ($index==0) {echo "<div id='1' class='single-project-description' style='margin-top:15px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>";}
                 if (!array_key_exists($index+1,$landscapeImages)) {
                     foreach($portraitImages as $innerIndex=>$innerImage) {
                         if ($innerIndex==0 || $innerIndex==2 || $innerIndex==4) {
@@ -84,6 +124,9 @@ and (max-width : 1024px){
                     }
                     else if ($innerIndex==1) {
                         echo $innerImage.'float:right;">';
+                        if (count($portraitImages)==2) {
+                            echo $image;
+                        }
                     }
                     else {
                         if ($nextPortraitStack!=1) {
@@ -108,5 +151,92 @@ and (max-width : 1024px){
                 }
             }
         }
+
         ?> 
+        
+        <!--Let's work on that dynamic down-arrow code...-->
+        <a id="dynamicDown" href="javascript:void(0)" ><img id="dynamicDownImg" style="transform: rotate(90deg);
+                    position: fixed;
+                    bottom: 50px;
+                    left: 50%;
+                    filter: drop-shadow(0px 0px 5px #222);
+                    transition: 1s ease-in-out;
+                    opacity: 0.8;" src='<?php echo TEMPLATE_URI;?>/img/right-arrow-white.png' ></a>
+                    
+        <script>
+        $.fn.isInViewport = function() {
+            var elementTop = $(this).offset().top;
+            var elementBottom = elementTop + $(this).outerHeight();
+
+            var viewportTop = $(window).scrollTop();
+            var viewportBottom = viewportTop + $(window).height();
+
+            return elementBottom > viewportTop && elementTop < viewportBottom;
+        };
+        var bottomOfPage=false;
+        $("#dynamicDown").click(function(event){
+            if (!bottomOfPage) {
+                for (var i=0; i<20; i++) {
+                    if (document.getElementById(i) !== null) {
+                        if ($("#"+i).isInViewport()) {
+                            if (document.getElementById(i+1) !== null) {id=i+1; break;}
+                            else {id=0;}
+                        }
+                    }
+                }
+                $('html,body').animate({scrollTop:  $("#"+ id).offset().top},'slow');
+            }
+            else {
+                $('html,body').animate({scrollTop:  0},'slow');
+                bottomOfPage=false;
+            }
+        });
+        $("#dynamicDownImg").on({
+            mouseenter: function () {
+                $(this).css("transition", "0.3s ease-in-out");
+                $(this).css("opacity", 0.8);
+            },
+            mouseleave: function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(function(){
+                    $("#dynamicDownImg").css("transition", "1s ease-in-out");
+                    $("#dynamicDownImg").css("opacity", 0.25); 
+                }, 1500);
+            }
+        });
+        var timeout;
+        timeout = setTimeout(function(){ $("#dynamicDownImg").css("opacity", 0.25); }, 3000);
+        var timestamp = 0;
+        var mY = 0;
+        $(document).mousemove(function(e) {
+            var now = Date.now();
+            currentmY = e.screenY;
+            var dt = now - timestamp;
+            var distance = Math.abs(currentmY - mY);
+            var speed = Math.round(distance / dt * 1000);
+            mY = currentmY;
+            timestamp = now;
+
+            if (speed>800) {
+                $("#dynamicDownImg").css("transition", "0.3s ease-in-out");
+                $("#dynamicDownImg").css("opacity", 0.8);
+                clearTimeout(timeout);
+                timeout = setTimeout(function(){
+                    $("#dynamicDownImg").css("transition", "1s ease-in-out");
+                    $("#dynamicDownImg").css("opacity", 0.25); 
+                }, 1500);
+            }
+        });
+        window.onscroll = function(ev) {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                $("#dynamicDownImg").css("transition", "0.3s ease-in-out");
+                $("#dynamicDownImg").css('transform', 'rotate(90deg) scaleX(-1)');
+                bottomOfPage=true;
+            }
+            else {
+                $("#dynamicDownImg").css("transition", "0.3s ease-in-out");
+                $("#dynamicDownImg").css('transform', 'rotate(90deg) scaleX(1)');
+            }
+        };
+        </script>
 </div>

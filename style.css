@@ -94,7 +94,7 @@ img {
     width:30.5%;
     float:left;
     margin:1.2%;
-    margin-bottom: -40px;
+    margin-bottom: -30px;
 }
 
 /*.large-grid .project-teaser:nth-of-type(5n+0){
@@ -397,7 +397,7 @@ and (max-width : 600px) {
 .single-project-subtitle {
     color: #727272;
     padding:20px;
-    font-family:"Segoe UI";
+    font-family:"Segoe UI Light";
     font-size:20px;
     text-align: left;
     margin-left:24px;
@@ -581,7 +581,8 @@ and (max-width : 600px) {
 
 .page-template-page-portfolio .slideshow-arrows,
 .page-template-page-homepage .slideshow-arrows{
-    display: none;
+    filter: brightness(0) invert(1);
+    opacity: 0.5;
 }
 
 .no-touch .single-smprojectentity  .slideshow-arrows{
@@ -1034,29 +1035,29 @@ Chris Aitken edits
 */
 
 .menu-item-10:hover ~ #hr {
-  margin-left: 5%;
-  width: 18.5%;
+  margin-left: 6%;
+  width: 22.75%;
   background: rgb(128,128,128,0.5);
   z-index: 3000;
 }
 
 .menu-item-22:hover ~ #hr {
-  margin-left: 28.5%;
-  width: 17.5%;
+  margin-left: 35%;
+  width: 21%;
   background: rgb(128,128,128,0.5);
   z-index: 3000;
 }
 
 .menu-item-813:hover ~ #hr {
-  margin-left: 51%;
-  width: 9.5%;
+  margin-left: 62%;
+  width: 13%;
   background: rgb(128,128,128,0.5);
   z-index: 3000;
 }
 
 .menu-item-25:hover ~ #hr {
-  margin-left: 66%;
-  width: 34%;
+  margin-left: 81%;
+  width: 19%;
   background: rgb(128,128,128,0.5);
   z-index: 3000;
 }
@@ -1064,8 +1065,8 @@ Chris Aitken edits
 #hr {
   height: 1px;
   margin-top:3px;
-  margin-left: 5%;
-  width: 18%;
+  margin-left: 6%;
+  width: 22.75%;
   background: rgb(128,128,128,0);
   border: none;
   transition: .3s ease-in-out;
