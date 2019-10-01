@@ -7,12 +7,54 @@ if('' != $entity->resume){
     $resumeObj = new MediaEntity($entity->resume);
     $resumeUrl = $resumeObj->url;
 }
-
+if (!strpos($_SERVER['REQUEST_URI'], 'staff')) {
+    echo '<script>console.log('.json_encode($entity).')</script>';
+    $metaArray = explode("#", $entity->rawContent);
+    $profileArray = [];
+    foreach ($metaArray as $index=>$object) {
+        $profileArray[substr(explode(chr(10),trim($object))[0],0,-1)] = nl2br(substr(strstr($object,chr(10)), 1));
+    }
+    echo '<script>console.log('.json_encode($profileArray).')</script>';
 ?>
+    <style>
+    #FeaturedImage {
+        margin-left: 38px;
+        margin-right:38px;
+        float:left;
+    }
+    #Title {
+        color: #000000;
+        font-size:24px;
+        margin:20px;
+    }
+    #Description {
+        color: #000000;
+        font-size:18px;
+        margin-right:100px;
+    }
+    </style>
+    <div id='FeaturedImage'>
+        <?php
+        if(isset($entity->featuredImage)){
+            $entity->featuredImage->resize(500,500,1);
+            echo $entity->featuredImage->imgtagsized;
+        }
+        ?>
+    </div>
+    <div id='Title'><?php echo $profileArray['Name']; ?></div>
+    <div id='Description'><?php echo $profileArray['Description']; ?></div>
+
+<?php
+}
+else {
+?>
+
 <div class='project-teaser person-teaser' >
     <?php
+    echo '<script>console.log('.json_encode($entity).')</script>';
     if('' != $resumeUrl){
         echo '<a href="'.$resumeUrl.'" target="_blank" >';
+        //echo '<a href="'.$entity->url.'" target="_self" >';
     }
     ?>
     <div class='thumb' >
@@ -46,3 +88,5 @@ if('' != $entity->resume){
         ?-->
     </div>
 </div>
+
+<?php } ?>

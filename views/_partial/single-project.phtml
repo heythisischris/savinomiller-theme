@@ -64,39 +64,39 @@ p {
             $size = getimagesize($contentPath);
             $imageWidth=getimagesize($image->urlsized)[0];
             $imageHeight=getimagesize($image->urlsized)[1];
-            $anchorIndex=$index+1;
+            
             if ($imageWidth>$imageHeight && $image->url!=="http://savinomiller.com/cms-site-admin/wp-content/uploads/2015/03/Site-Photo-085.jpg") {
                 echo '<script>console.log('.json_encode($image).');</script>';
                 $margins="margin-top:15px;margin-bottom:0px;";
                 if ($index==0) {
                     $margins="margin-top:0px;margin-bottom:0px;";
-                    $anchorIndex=0;
                 }
                 else if ($index==count($entity->imageGallery1)) {
                     $margins="margin-top:0px;margin-bottom:0px;";
                 }
-                $landscapeImages[] = '<img id="'.$anchorIndex.'" src="'.$image->urlsized.'" style="object-fit:cover;width:100%;'.$margins.'">';
+                $landscapeImages[] = '<img src="'.$image->urlsized.'" style="object-fit:cover;width:100%;'.$margins.'" ';
             }
             else {
                 if ($index==0) {$anchorIndex=0;}
-                $portraitImages[] = '<img id="'.$anchorIndex.'" class="portraitImage" src="'.$image->urlsized.'" style="object-fit:cover;width:49.5%;height:1000px;margin-top:15px;margin-bottom:0px;';
+                $portraitImages[] = '<img class="portraitImage" src="'.$image->urlsized.'" style="object-fit:cover;width:49.5%;height:1000px;margin-top:15px;margin-bottom:0px;';
             }
             //echo '<script>console.log('.json_encode($image).');</script>';
             //echo '<script>console.log('.json_encode(getimagesize($image->urlsized)).');</script>';
         }
 
+        $anchorIndex=0;
         if (count($landscapeImages)==0) {
             foreach($portraitImages as $index=>$image) {
                 if ($index==0 || $index==2 || $index==4) {
                     if ($index==0) {echo "<div style='height:940px'>";}
-                    echo $image.'float:left;">';
+                    echo $image.'float:left;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
                 }
                 else if ($index==1 || $index==3 || $index==5) {
                     echo $image.'float:right;">';
                 }
 
                 if ($index==1) {
-                    echo "</div><div id='1' class='single-project-description' style='margin-top:105px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>";
+                    echo "</div><div id='1' class='single-project-description' style='margin-top:105px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>"; $anchorIndex+=1;
                 }
             }
         }
@@ -104,12 +104,14 @@ p {
         $nextPortraitStack=0;
         foreach($landscapeImages as $index=>$image) {
             if ($index==0 || $index==1) {
-                echo $image;
-                if ($index==0) {echo "<div id='1' class='single-project-description' style='margin-top:15px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>";}
+                echo $image.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
+                if ($index==0) {
+                    echo "<div id='1' class='single-project-description' style='margin-top:15px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>"; $anchorIndex+=1;
+                }
                 if (!array_key_exists($index+1,$landscapeImages)) {
                     foreach($portraitImages as $innerIndex=>$innerImage) {
                         if ($innerIndex==0 || $innerIndex==2 || $innerIndex==4) {
-                            echo $innerImage.'float:left;">';
+                            echo $innerImage.'float:left;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
                         }
                         else if ($innerIndex==1 || $innerIndex==3 || $innerIndex==5) {
                             echo $innerImage.'float:right;">';
@@ -120,30 +122,30 @@ p {
             else if ($index==2 && count($portraitImages)>0) {
                 foreach($portraitImages as $innerIndex=>$innerImage) {
                     if ($innerIndex==0) {
-                        echo $innerImage.'float:left;">';
+                        echo $innerImage.'float:left;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
                     }
                     else if ($innerIndex==1) {
                         echo $innerImage.'float:right;">';
                         if (count($portraitImages)==2) {
-                            echo $image;
+                            echo $image.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
                         }
                     }
                     else {
                         if ($nextPortraitStack!=1) {
-                            echo $image;
+                            echo $image.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
                             $nextPortraitStack=1;
                         }
                     }
                 }
             }
             else {
-                echo $image;
+                echo $image.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
             }
 
             if ($nextPortraitStack==1) {                
                 foreach($portraitImages as $innerIndex=>$innerImage) {
                     if ($innerIndex==2||$innerIndex==3) {
-                        echo $innerImage;
+                        echo $innerImage.'float:center;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
                     }
                     else {
                         $nextPortraitStack=2;
@@ -169,26 +171,31 @@ p {
             var elementBottom = elementTop + $(this).outerHeight();
 
             var viewportTop = $(window).scrollTop();
-            var viewportBottom = viewportTop + $(window).height();
+            var viewportBottom = viewportTop + ($(window).height()/2);
 
             return elementBottom > viewportTop && elementTop < viewportBottom;
         };
         var bottomOfPage=false;
+        var id=-1;
         $("#dynamicDown").click(function(event){
             if (!bottomOfPage) {
-                for (var i=0; i<20; i++) {
-                    if (document.getElementById(i) !== null) {
-                        if ($("#"+i).isInViewport()) {
-                            if (document.getElementById(i+1) !== null) {id=i+1; break;}
-                            else {id=0;}
+                if (id==-1) {id=0;}
+                else {
+                    for (var i=0; i<20; i++) {
+                        if (document.getElementById(i) !== null) {
+                            if ($("#"+i).isInViewport()) {
+                                id=i+1;
+                            }
                         }
                     }
                 }
-                $('html,body').animate({scrollTop:  $("#"+ id).offset().top},'slow');
+                //console.log(id);
+                $('html,body').animate({scrollTop:  $("#"+ id).offset().top - (($(window).height() - $("#"+ id).height())/2)},'slow');
             }
             else {
                 $('html,body').animate({scrollTop:  0},'slow');
                 bottomOfPage=false;
+                id=-1;
             }
         });
         $("#dynamicDownImg").on({
@@ -228,7 +235,7 @@ p {
             }
         });
         window.onscroll = function(ev) {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+            if ((window.innerHeight + window.scrollY + 300) >= document.body.offsetHeight) {
                 $("#dynamicDownImg").css("transition", "0.3s ease-in-out");
                 $("#dynamicDownImg").css('transform', 'rotate(90deg) scaleX(-1)');
                 bottomOfPage=true;
