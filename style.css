@@ -24,9 +24,9 @@ body,
 .award-teaser p,
 .person-teaser p {
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 18px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Segoe UI Light';
     font-weight: 400;
 }
 
@@ -404,18 +404,7 @@ and (max-width : 600px) {
     margin-top:-34px;
 }
 
-.large-master-type h2 {
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 25px;
-    margin: 0;
-    color: #fff;
-    margin-bottom: 0px;
-}
-
 .large-master-type {
-   /* color: #4899b6;*/
-    color: #fff;
     font-size: 17px;
     line-height: 25px;
 }
@@ -465,6 +454,7 @@ and (max-width : 600px) {
 .page-template-page-awardspress .page-content.large-master-type,
 .page-template-page-news  .page-content.large-master-type {
     opacity: 1;
+    margin-top: -80px;
 }
 
 
@@ -483,7 +473,6 @@ and (max-width : 600px) {
     padding-bottom: 85px;
     padding-top: 190px;
     opacity: 0.8;
-    text-align: justify;
 }
 
 
@@ -759,9 +748,8 @@ body.page-template-page-portfolio {
 
 .page-content {
     padding-top: 250px;
-    padding-left: 50px;
-    padding-right: 50px;
-    max-width: 960px;
+    padding-left: 135px;
+    padding-right: 135px;
     margin: 0 auto;
 }
 
@@ -769,8 +757,6 @@ body.page-template-page-portfolio {
 .page-template-page-awardspress .page-content,
 .page-template-page-news .page-content {
     /*margin: 0;*/
-    background: rgba(0,0,0,0.5);
-
 }
 
 .standard-about-header {
@@ -863,7 +849,37 @@ body.page-template-page-portfolio {
 }
 
 .award-teaser {
-    padding-bottom: 25px;
+    width: 400px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    margin-bottom:40px;
+}
+
+@media only screen
+and (max-width : 1024px){
+    .award-teaser {
+        width: 325px;
+    }
+    .page-template-page-awardspress .page-content.large-master-type {
+        text-align: center;
+    }
+}
+
+.award-teaser-title {
+    font-size: 24px;
+    font-family: "Segoe UI Light";
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.award-teaser-image {
+    width: 400px;
+    height: 300px;
+    object-fit: cover;
 }
 
 .award-teaser .inner-image img {

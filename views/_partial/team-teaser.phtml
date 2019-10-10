@@ -18,30 +18,40 @@ if (!strpos($_SERVER['REQUEST_URI'], 'staff')) {
 ?>
     <style>
     #FeaturedImage {
-        margin-left: 38px;
-        margin-right:38px;
+        margin-left: 135px;
+        margin-right:100px;
         float:left;
     }
     #Title {
         color: #000000;
         font-size:24px;
         margin:20px;
+        margin-bottom:0px;
+    }
+    #Subtitle {
+        color: #000000;
+        font-size:24px;
+        margin:20px;
+        margin-top:0px;
+        font-family: "Segoe UI Light";
     }
     #Description {
         color: #000000;
-        font-size:18px;
-        margin-right:100px;
+        font-size:20px;
+        margin-right:135px;
+        font-family: "Segoe UI Light";
     }
     </style>
     <div id='FeaturedImage'>
         <?php
         if(isset($entity->featuredImage)){
-            $entity->featuredImage->resize(500,500,1);
+            $entity->featuredImage->resize(400,400,1);
             echo $entity->featuredImage->imgtagsized;
         }
         ?>
     </div>
-    <div id='Title'><?php echo $profileArray['Name']; ?></div>
+    <div id='Title'><?php echo explode(chr(10),$profileArray['Name'])[0]; ?></div>
+    <div id='Subtitle'><?php echo explode(chr(10),$profileArray['Name'])[1]; ?></div>
     <div id='Description'><?php echo $profileArray['Description']; ?></div>
 
 <?php

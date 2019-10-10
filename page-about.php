@@ -10,7 +10,6 @@ $wpEntity->init();
 $entity = $wpEntity->entity;
 
 ?>
-<?php  echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/background-slideshow.phtml',$entity); ?>
     <div id="main-content" >
 
         <div class="project-nav standard-about-header">

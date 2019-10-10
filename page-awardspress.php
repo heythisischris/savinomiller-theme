@@ -23,7 +23,6 @@ if(!empty($casestudies)){
     }
 }
 ?>
-<?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/background-slideshow.phtml',$entity); ?>
     <div id="main-content" >
         <div class="inner">
             <div class="page-content body-copy large-master-type" >

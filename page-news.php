@@ -18,12 +18,13 @@ $casestudies = $catTagSearchController->entityCollection;
 
 $collectionHtml = '';
 if(!empty($casestudies)){
-    foreach($casestudies as $casestudy){
+    foreach($casestudies as $index=>$casestudy){
+        if ($index!==0) {
         $collectionHtml.= PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/award-teaser.phtml',$casestudy);
+        }
     }
 }
 ?>
-<?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/background-slideshow.phtml',$entity); ?>
     <div id="main-content" >
         <div class="inner">
             <div class="page-content body-copy large-master-type" >

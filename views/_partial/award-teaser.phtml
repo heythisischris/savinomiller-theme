@@ -1,78 +1,38 @@
 <?php
 /** @var $entity SMAwardEntity */
 $entity = $partialObj;
-//print_r($entity);
+if (strpos($_SERVER['REQUEST_URI'], 'awards')) {
 ?>
 <div class='award-teaser' >
-    <h2 style="text-align:left;"><?php echo $entity->title; ?></h2>
-    <?php echo $entity->content; ?>
-
-    <div class="link-box">
-     <?php
-
-        if(isset($entity->featuredImage)){
-            $entity->featuredImage->resize(850,1650,0);
-
-            $linkBegin = '';
-            $linkEnd = '';
-            if('' != $entity->link){
-                $linkBegin =  '<a href="'.$entity->link.'" target="_blank" >';
-                $linkEnd = '</a>';
-            }
-            echo'<div class="inner-image" >'.$linkBegin.$entity->featuredImage->imgtagsized.$linkEnd.'</div>';
-        }
-
-        if('' != $entity->link){
-            ?>
-            <a class="award-link" href="<?php echo $entity->link; ?>" target="_blank" >Link to website</a>
-            <?php
-        }
-
-         if(isset($entity->linktoproject) && '' != $entity->linktoproject){
-             $args = array(
-                 'include' => $entity->linktoproject, // id of a page, post, or custom type
-                 'post_type' => 'any'
-             );
-             $collection = get_posts($args);
-             //print_r($collection);
-             if(!empty($collection[0])){
-                 $linkedObject = new WpPostEntity();
-                 $linkedObject->init($collection[0]);
-                 //print_r($linkedObject);
-                 ?>
-                <a class="award-link" href="<?php echo $linkedObject->url; ?>"  >Link to project</a>
-             <?php
-             }
-         }
-
-
-
-        if('' != $entity->fileAttachment){
-            ?>
-            <a class="award-link" href="<?php echo $entity->fileAttachment->url; ?>" target="_blank" >Link to PDF</a>
-            <?php
-        }
-    ?>
-    </div>
-
-
-    <?php
-    /*
-    <a href="<?php echo $entity->url; ?>" >
-        <div class='thumb' >
-            <?php
-            if(isset($entity->imageGallery1[0])){
-                $entity->imageGallery1[0]->resize(550,400,1);
-                echo $entity->imageGallery1[0]->imgtagsized;
-            }else{
-                echo '<img src="'.TEMPLATE_URI.'/img/placeholder.png" />';
-            }
-            ?>
-        </div>
-        <div class='teaser-title' >
-            <?php echo $entity->title; ?><br>
-            <div class="award-date" ><?php echo $entity->date; ?></div>
-        </div>
-    </a>
-    */ ?>
+    <?php echo "<img class='award-teaser-image' ".explode("<img",$entity->content)[1]; ?>
+    <div class="award-teaser-title"><?php echo $entity->title; ?></div>
 </div>
+<?php } else { 
+    ?>
+    <style>
+        .news-date {
+            font-size: 24px;
+            color: #7B8080;
+            font-family: "Segoe UI Light";
+            text-align: left;
+        }
+        .news-title {
+            font-size: 24px;
+            color: #7B8080;
+            font-family: "Segoe UI Semi-Bold";
+            text-align: left;
+        }
+        .news-description {
+            font-size: 20px;
+            color: #7B8080;
+            font-family: "Segoe UI Light";
+            text-align: left;
+        }
+    </style>
+<div class='award-teaser' >
+    <?php preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $entity->content, $image); echo isset($image[1]) ? "<img class='award-teaser-image' src='".$image[1]."'>" : ""; ?>
+    <div class="news-date"><?php $dateArray = explode(".",$entity->title); echo $dateArray[0].'.'.$dateArray[1].'.'.substr($dateArray[2],0,2); ?></div>
+    <div class="news-title"><?php echo substr($dateArray[2], 2); ?></div>
+    <div class="news-description"><?php echo preg_replace("/<img[^>]+\>/i", "", preg_replace("/<video[^>]+\>/i", "", $entity->content)); ?></div>
+</div>
+<?php } ?>
