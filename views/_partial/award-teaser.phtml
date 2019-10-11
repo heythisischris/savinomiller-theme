@@ -2,37 +2,68 @@
 /** @var $entity SMAwardEntity */
 $entity = $partialObj;
 if (strpos($_SERVER['REQUEST_URI'], 'awards')) {
+    //echo json_encode($entity);
+    $titleOfProject="";
+    if(isset($entity->linktoproject) && '' != $entity->linktoproject){
+        $args = array(
+            'include' => $entity->linktoproject, // id of a page, post, or custom type
+            'post_type' => 'any'
+        );
+        $collection = get_posts($args);
+        //print_r($collection);
+        if(!empty($collection[0])){
+            $linkedObject = new WpPostEntity();
+            $linkedObject->init($collection[0]);
+            $linkToProject = $linkedObject->url;
+            $titleOfProject = $linkedObject->title;
+        }
+    }
 ?>
 <div class='award-teaser' >
-    <?php echo "<img class='award-teaser-image' ".explode("<img",$entity->content)[1]; ?>
-    <div class="award-teaser-title"><?php echo $entity->title; ?></div>
+    <?php if (isset($linkToProject)) { ?><a href=<?php echo $linkToProject; ?>><?php } ?>
+        <?php echo "<img class='award-teaser-image' ".explode("<img",$entity->content)[1]; ?>
+    <?php if (isset($linkToProject)) { ?></a><?php } ?>
+    <div class="award-teaser-title"><?php echo $entity->title."<br>".$titleOfProject; ?></div>
 </div>
-<?php } else { 
+<?php } else {
     ?>
     <style>
         .news-date {
-            font-size: 24px;
+            font-size: 18px;
             color: #7B8080;
             font-family: "Segoe UI Light";
             text-align: left;
+            margin-bottom: 0px;
         }
         .news-title {
-            font-size: 24px;
+            font-size: 18px;
             color: #7B8080;
-            font-family: "Segoe UI Semi-Bold";
+            font-family: "Segoe UI";
             text-align: left;
+            margin-bottom: 15px;
         }
         .news-description {
             font-size: 20px;
             color: #7B8080;
             font-family: "Segoe UI Light";
             text-align: left;
+            margin-right: -22px;
+            line-height: 22px;
+        }
+        .award-teaser {
+            margin-right: 0vw !important;
         }
     </style>
 <div class='award-teaser' >
-    <?php preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $entity->content, $image); echo isset($image[1]) ? "<img class='award-teaser-image' src='".$image[1]."'>" : ""; ?>
-    <div class="news-date"><?php $dateArray = explode(".",$entity->title); echo $dateArray[0].'.'.$dateArray[1].'.'.substr($dateArray[2],0,2); ?></div>
-    <div class="news-title"><?php echo substr($dateArray[2], 2); ?></div>
+    <?php if ($entity->link!=="") {$linkPart1="<a href='".$entity->link."'>";$linkPart2="</a>";} else {$linkPart1="";$linkPart2="";} ?>
+    <?php preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $entity->content, $image); echo isset($image[1]) ? $linkPart1."<img class='award-teaser-image' src='".$image[1]."'>".$linkPart2 : ""; ?>
+    <?php $dateArray = explode(".",$entity->title); if (isset($dateArray[2])) { $newsDate1 = $dateArray[0].'.'.$dateArray[1].'.'.substr($dateArray[2],0,2); $newsDate2=substr($dateArray[2], 2); ?>
+    <div class="news-date"><?php echo $newsDate1; ?></div>
+    <div class="news-title"><?php echo $newsDate2; ?></div>
+    <?php } else {$dateArray = explode("20",$entity->title); $newsDate1=$dateArray[0]."20".substr($dateArray[1],0,2); $newsDate2=substr($dateArray[1], 2); ?>
+    <div class="news-date"><?php echo $newsDate1; ?></div>
+    <div class="news-title"><?php echo $newsDate2; ?></div>
+    <?php } ?>
     <div class="news-description"><?php echo preg_replace("/<img[^>]+\>/i", "", preg_replace("/<video[^>]+\>/i", "", $entity->content)); ?></div>
 </div>
 <?php } ?>

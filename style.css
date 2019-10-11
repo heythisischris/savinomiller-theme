@@ -120,6 +120,8 @@ img {
 
 .large-grid .project-teaser img {
     width: 100%;
+    height: 327px;
+    object-fit: cover;
 }
 
 .main-menu {
@@ -423,9 +425,16 @@ and (max-width : 600px) {
     color: #000;
 }
 
-.single-smpersonentity .page-content,
+.single-smpersonentity .page-content  {
+    max-width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .page-template-page-team .page-content  {
     max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .person-cv {
@@ -501,15 +510,28 @@ and (max-width : 600px) {
     */
 }
 
+.page-id-36  .page-content,
 .page-id-23 .page-content {
-    max-width: 575px;
+    max-width: 1334px;
+    text-align: center;
+    font-size: 20px;
+    line-height: 25px;
+    margin-top: 250px;
+    width: 87vw;
+}
+
+
+.page-id-36  .page-content {
+    margin-top: 50px !important;
+    text-align:left;
 }
 
 .page-template-default .page-content {
     /*color: #4899b6;*/
     color: #666;
     /*padding-right: 350px;*/
-    padding-top: 130px;
+    padding-top: 0px;
+    margin-top: 0px;
 }
 
 .page-template-default .page-content h3 {
@@ -741,22 +763,22 @@ body.page-template-page-portfolio {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
 }
 
-.page-id-36  .page-content,
 .page-id-20 .page-content {
     padding-top: 250px;
 }
 
 .page-content {
     padding-top: 250px;
-    padding-left: 135px;
-    padding-right: 135px;
+    padding-left: 0px;
+    padding-right: 0px;
     margin: 0 auto;
 }
 
-.page-template-page-about .page-content,
-.page-template-page-awardspress .page-content,
-.page-template-page-news .page-content {
-    /*margin: 0;*/
+.page-template-page-about .page-content {
+    max-width: 1334px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 87vw;
 }
 
 .standard-about-header {
@@ -854,13 +876,38 @@ body.page-template-page-portfolio {
     display: inline-block;
     text-align: center;
     vertical-align: top;
-    margin-bottom:40px;
+    margin-bottom:12px;
+    margin-left: 2.5vw;
+    margin-right: 0.15vw;
+}
+
+
+@media only screen
+and (max-width : 1281px){
+
+.award-teaser {
+    width: 372px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    margin-bottom: 12px;
+    margin-left: 2.5vw;
+    margin-right: 0.15vw;
+}
+.award-teaser-image {
+    width: 375px !important;
+}
+
 }
 
 @media only screen
 and (max-width : 1024px){
     .award-teaser {
-        width: 325px;
+        width: 80vw;
+    }
+    .award-teaser-image {
+        width: 80vw !important;
     }
     .page-template-page-awardspress .page-content.large-master-type {
         text-align: center;
@@ -868,18 +915,20 @@ and (max-width : 1024px){
 }
 
 .award-teaser-title {
-    font-size: 24px;
+    font-size: 20px;
     font-family: "Segoe UI Light";
-    margin-top: 15px;
-    margin-bottom: 15px;
-    padding-left: 70px;
-    padding-right: 70px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    color: #7B8080;
+    margin-left: 1vw;
 }
 
 .award-teaser-image {
-    width: 400px;
-    height: 300px;
+    width: 430px;
+    height: 315px;
     object-fit: cover;
+    margin-bottom: 8px;
 }
 
 .award-teaser .inner-image img {
@@ -1051,29 +1100,29 @@ Chris Aitken edits
 */
 
 .menu-item-10:hover ~ #hr {
-  margin-left: 6%;
-  width: 22.75%;
+  margin-left: 6.5%;
+  width: 24%;
   background: rgb(128,128,128,0.5);
   z-index: 3000;
 }
 
 .menu-item-22:hover ~ #hr {
-  margin-left: 35%;
-  width: 21%;
+  margin-left: 37.5%;
+  width: 15.5%;
   background: rgb(128,128,128,0.5);
   z-index: 3000;
 }
 
 .menu-item-813:hover ~ #hr {
-  margin-left: 62%;
-  width: 13%;
+  margin-left: 60%;
+  width: 12.5%;
   background: rgb(128,128,128,0.5);
   z-index: 3000;
 }
 
 .menu-item-25:hover ~ #hr {
-  margin-left: 81%;
-  width: 19%;
+  margin-left: 80.25%;
+  width: 19.5%;
   background: rgb(128,128,128,0.5);
   z-index: 3000;
 }

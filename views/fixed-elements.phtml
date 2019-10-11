@@ -167,8 +167,8 @@ if ((strpos($_SERVER['REQUEST_URI'],'portfolio') !== false) || (strpos($_SERVER[
 ?>
 <style>
 #hr {  
-  margin-left: 5%;
-  width: 18.5%;
+  margin-left: 6.5%;
+  width: 24%;
   background: rgb(128,128,128,0.5);
 }
 </style>
@@ -178,8 +178,8 @@ else if (strpos($_SERVER['REQUEST_URI'],'news') !== false) {
 ?>
 <style>
 #hr {  
-  margin-left: 51%;
-  width: 9.5%;
+  margin-left: 60%;
+  width: 12.5%;  
   background: rgb(128,128,128,0.5);
 }
 </style>
@@ -188,9 +188,9 @@ else if (strpos($_SERVER['REQUEST_URI'],'news') !== false) {
 else if (strpos($_SERVER['REQUEST_URI'],'contact') !== false) {
 ?>
 <style>
-#hr {  
-  margin-left: 66%;
-  width: 34%;
+#hr {    
+  margin-left: 80.25%;
+  width: 19.5%;
   background: rgb(128,128,128,0.5);
 }
 </style>
@@ -200,8 +200,8 @@ else if ($_SERVER['REQUEST_URI'] !== '/') {
 ?>
 <style>
 #hr {  
-  margin-left: 28.5%;
-  width: 17.5%;
+  margin-left: 37.5%;
+  width: 15.5%;
   background: rgb(128,128,128,0.5);
 }
 </style>
@@ -210,7 +210,7 @@ else if ($_SERVER['REQUEST_URI'] !== '/') {
 ?>
 <script>
 setTimeout(function() {
-$('.menu').append('<div id="hr"></div>');
+$('.menu').not(".sub-nav").append('<div id="hr"></div>');
 }, 600);
 </script>
 <style>

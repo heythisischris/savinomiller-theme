@@ -18,15 +18,18 @@ if (!strpos($_SERVER['REQUEST_URI'], 'staff')) {
 ?>
     <style>
     #FeaturedImage {
-        margin-left: 135px;
-        margin-right:100px;
+        margin-left: 0px;
+        margin-right:3vw;
         float:left;
+        margin-bottom: 400px;
     }
     #Title {
         color: #000000;
         font-size:24px;
         margin:20px;
         margin-bottom:0px;
+        font-family: "Segoe UI Semi-Bold";
+        margin-top:-5px;
     }
     #Subtitle {
         color: #000000;
@@ -37,15 +40,14 @@ if (!strpos($_SERVER['REQUEST_URI'], 'staff')) {
     }
     #Description {
         color: #000000;
-        font-size:20px;
-        margin-right:135px;
+        font-size:18px;
         font-family: "Segoe UI Light";
     }
     </style>
     <div id='FeaturedImage'>
         <?php
         if(isset($entity->featuredImage)){
-            $entity->featuredImage->resize(400,400,1);
+            $entity->featuredImage->resize(300,300,1);
             echo $entity->featuredImage->imgtagsized;
         }
         ?>
@@ -62,8 +64,8 @@ else {
 <div class='project-teaser person-teaser' >
     <?php
     echo '<script>console.log('.json_encode($entity).')</script>';
-    if('' != $resumeUrl){
-        echo '<a href="'.$resumeUrl.'" target="_blank" >';
+    if('' != $entity->url){
+        echo '<a href="'.$entity->url.'" target="_self" >';
         //echo '<a href="'.$entity->url.'" target="_self" >';
     }
     ?>
