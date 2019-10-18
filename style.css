@@ -66,7 +66,7 @@ img {
 
 .inner-topper {
     width: 100%;
-    background: #4899b6;
+    background: #48B9C7;
     height:15px;
     overflow: hidden;
     position: relative;
@@ -134,6 +134,7 @@ img {
 }
 
 #current-page-name,
+#current-about-name,
 #current-cat-name {
     clear: both;
     text-align: left;
@@ -143,6 +144,10 @@ img {
     text-transform: uppercase;
     font-size: 18px;
     margin-top:6px;
+}
+
+#current-about-name {
+    margin-left: 120px;
 }
 
 .page-template-page-portfolio #current-page-name {
@@ -236,7 +241,7 @@ header nav .sub-nav a:visited,
 .page-content .person-info a,
 .page-content .person-info a:link,
 .page-content .person-info a:visited {
-    color: #4899b6;
+    color: #48B9C7;
 }
 
 .page-template-page-team .page-content  a:hover,
@@ -268,7 +273,7 @@ header nav .sub-nav a:hover,
 
 #mobile-menu-menu-container #menu-about-sub-menu a:hover,
 #mobile-menu-menu-container .project-category-menu a:hover{
-    color: #4899b6;
+    color: #48B9C7;
 }
 
 
@@ -293,7 +298,7 @@ header nav .sub-nav .current-menu-item a:link {
 #mobile-menu-menu-container .project-category-menu .current-menu-item a:visited,
 header nav .sub-nav .current-menu-item a:link,
 header nav .sub-nav .current-menu-item a:visited{
-    color: #4899b6;
+    color: #48B9C7;
 }
 
 
@@ -343,7 +348,7 @@ header {
 
 
 h5 {
-    color: #4899b6;
+    color: #48B9C7;
     font-size: 24px;
     font-weight: 400;
     line-height: 35px;
@@ -352,7 +357,7 @@ h5 {
 
 
 h3 {
-    color: #4899b6;
+    color: #48B9C7;
     font-size: 17px;
     font-weight: 400;
     line-height: 25px;
@@ -360,7 +365,7 @@ h3 {
 }
 
 h2 {
-    color: #4899b6;
+    color: #48B9C7;
     font-size: 20px;
     font-weight: 400;
     line-height: 25px;
@@ -422,7 +427,7 @@ and (max-width : 600px) {
 .single-smpersonentity .large-master-type h2,
 .page-template-page-team .large-master-type h2 {
     line-height: 20px;
-    color: #000;
+    color: #666666;
 }
 
 .single-smpersonentity .page-content  {
@@ -454,7 +459,7 @@ and (max-width : 600px) {
 .page-template-page-team .large-master-type h2,
 
 {
-    /*color: #4899b6;*/
+    /*color: #48B9C7;*/
     color: #666;
 }
 
@@ -527,7 +532,7 @@ and (max-width : 600px) {
 }
 
 .page-template-default .page-content {
-    /*color: #4899b6;*/
+    /*color: #48B9C7;*/
     color: #666;
     /*padding-right: 350px;*/
     padding-top: 0px;
@@ -680,7 +685,7 @@ and (max-width : 600px) {
 }
 
 .project-teaser .teaser-title .project-date {
-    color: #4899b6;
+    color: #48B9C7;
 }
 
 /*
@@ -753,8 +758,8 @@ body.page-template-page-portfolio {
 .project-category-menu {
     display:none;
     margin-top: -30px;
-    width: 245px;
-    margin-left: -6px;
+    width: 170px;
+    margin-left: 0px;
     padding-top: 10px;
 }
 
@@ -877,7 +882,7 @@ body.page-template-page-portfolio {
     text-align: center;
     vertical-align: top;
     margin-bottom:12px;
-    margin-left: 2.5vw;
+    margin-left: 2.6vw;
     margin-right: 0.15vw;
 }
 
@@ -886,7 +891,6 @@ body.page-template-page-portfolio {
 and (max-width : 1281px){
 
 .award-teaser {
-    width: 372px;
     height: 100%;
     display: inline-block;
     text-align: center;
@@ -894,6 +898,7 @@ and (max-width : 1281px){
     margin-bottom: 12px;
     margin-left: 2.5vw;
     margin-right: 0.15vw;
+    width: 29.5vw;
 }
 .award-teaser-image {
     width: 375px !important;

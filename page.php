@@ -3,6 +3,9 @@
 get_header();
 $wpEntity->init();
 $entity = $wpEntity->entity;
+if (strpos($_SERVER['REQUEST_URI'], 'mission')) {
+    ?><script>document.getElementById('current-about-name').innerHTML='Studio'</script><?php
+}
 
 if (strpos($_SERVER['REQUEST_URI'], 'contact') || strpos($_SERVER['REQUEST_URI'], 'mission')) {
     preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $entity->content, $image); echo isset($image[1]) ? "<img class='about-banner-image' src='".$image[1]."'>" : "";
@@ -19,7 +22,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'contact') || strpos($_SERVER['REQUEST_URI']
     .page-content .body-copy {
         margin-bottom:60px;
     }
-    a {
+    .about-link {
         color: #666666 !important;
         text-decoration: none;
     }

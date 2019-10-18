@@ -10,8 +10,6 @@ $entity = $wpEntity->entity;
 
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-
-
 include(TEMPLATE_DIR.'/controller/CatTagSearchController.php');
 $catTagSearchController = new CatTagSearchController();
 $catTagSearchController->postType = 'smpersonentity';
@@ -39,12 +37,15 @@ if(!empty($casestudies)){
     }
 }
 ?>
+<script>document.getElementById('current-about-name').innerHTML='Team'</script>
 <?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/background-image.phtml',$entity); ?>
 <style>
 .large-grid .project-teaser {
+    margin:0px;
+    width:initial;
     max-width: 19.75vw;
-    margin-left: 2.5vw;
-    margin-right: 2.5vw;
+    margin-left: 2.6vw;
+    margin-right: 2.6vw;
 }
 .page-template-page-team .large-grid {
     margin-left: 0px;

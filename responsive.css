@@ -178,8 +178,8 @@ and (max-width : 800px){
     .single-smpersonentity .large-grid,
     .page-template-page-team .large-grid,
     .large-grid {
-        margin-right:0;
-        margin-left:15px;
+        margin-right:0px;
+        margin-left:0px;
     }
 
     .large-grid .project-teaser:nth-of-type(5n+0),
@@ -210,8 +210,11 @@ and (max-width : 800px){
 
     .large-master-type h2,
     .large-master-type {
-        font-size: 15px;
-        line-height: 22px;
+        font-size: 20px;
+        line-height: 22px !important;
+    }
+    .person-info {
+        padding-bottom: 25px;
     }
 
 
@@ -221,9 +224,12 @@ and (max-width : 800px){
 @media only screen
 and (max-width : 600px) {
 
+    #current-about-name {
+        margin-left:-25px;
+    }
 
     .page-id-36 .page-content, .page-id-20 .page-content {
-        padding-top: 150px;
+        padding-top: 0px;
     }
 
 
