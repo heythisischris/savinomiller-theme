@@ -31,19 +31,18 @@ and (max-width : 1024px){
 
     .large-grid .project-teaser:nth-of-type(5n+0),
     .large-grid .project-teaser {
-        margin-right:2%; width:29.5%;
+        margin: 3%;
+        width: 27.33%;
         float:left;
-        margin-bottom: 0px;
+        margin-bottom: -15px;
     }
 
 
     .large-grid .project-teaser:nth-of-type(4n+0){
-        margin-right:0;
     }
 }
 
-@media only screen
-and (max-width : 800px){
+@media only screen and (max-width: 800px){
 
     #current-page-name,
     #current-cat-name,
@@ -140,9 +139,7 @@ and (max-width : 800px){
     }
 
 
-    #main-content .inner {    
-        margin-left: 5px !important;
-        margin-right: 22px !important;
+    #main-content .inner {
     }
 
     .page-template-page-awardspress .page-content,
@@ -185,9 +182,6 @@ and (max-width : 800px){
     .large-grid .project-teaser:nth-of-type(5n+0),
     .large-grid .project-teaser:nth-of-type(4n+0),
     .large-grid .project-teaser {
-    max-width: 87vw !important;
-    margin-left: 5.5vw !important;
-    margin-right: 5.5vw !important;
     }
 
     .large-grid .project-teaser:nth-of-type(3n+0){
@@ -195,7 +189,6 @@ and (max-width : 800px){
     }
 
     .large-grid .project-teaser:nth-of-type(2n+0){
-        /*margin-right:0%;*/
     }
 
 
@@ -242,11 +235,13 @@ and (max-width : 600px) {
     .large-grid .project-teaser:nth-of-type(4n+0),
     .large-grid .project-teaser:nth-of-type(5n+0),
     .large-grid .project-teaser {
-        margin-right:1%; width:94%
+        width: 90%;
+        margin: 5%;
+        margin-top: 0px;
+        margin-bottom: 0px;
     }
 
     .large-grid .project-teaser:nth-of-type(2n+0){
-        margin-right:0%;
     }
 
     .page-id-42 .large-master-type {
@@ -281,8 +276,8 @@ and (max-width : 450px) {
     #mobile-menu-menu-container .project-category-menu,
     #mobile-menu-menu-container #menu-about-sub-menu{
         border-top: 1px solid #666;
-        padding-top: 20px;
-        margin-top: 0px;
+        padding-top: 15px;
+        margin-top: 10px;
     }
 
 
@@ -294,7 +289,9 @@ and (max-width : 450px) {
 
 
     .page-template-page-team .large-grid .project-teaser {
-        width:100vw;
+        width: 90%;
+        margin: 5%;
+        margin-bottom: -15px;
     }
 
     .page-template-page-team .large-grid .project-teaser:nth-of-type(3n+0){
@@ -302,7 +299,6 @@ and (max-width : 450px) {
     }
 
     .page-template-page-team .large-grid .project-teaser:nth-of-type(2n+0){
-        margin-right:0;
     }
 
     .inner-description {

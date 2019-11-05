@@ -27,33 +27,6 @@ if (strpos($_SERVER['REQUEST_URI'], 'awards')) {
 </div>
 <?php } else {
     ?>
-    <style>
-        .news-date {
-            font-size: 18px;
-            color: #7B8080;
-            font-family: "Segoe UI Light";
-            text-align: left;
-            margin-bottom: 0px;
-        }
-        .news-title {
-            font-size: 18px;
-            color: #7B8080;
-            font-family: "Segoe UI";
-            text-align: left;
-            margin-bottom: 15px;
-        }
-        .news-description {
-            font-size: 20px;
-            color: #7B8080;
-            font-family: "Segoe UI Light";
-            text-align: left;
-            margin-right: -22px;
-            line-height: 22px;
-        }
-        .award-teaser {
-            margin-right: 0vw !important;
-        }
-    </style>
 <div class='award-teaser' >
     <?php if ($entity->link!=="") {$linkPart1="<a href='".$entity->link."'>";$linkPart2="</a>";} else {$linkPart1="";$linkPart2="";} ?>
     <?php preg_match('/<img.+src=[\'"](?P<src>.+?)[\'"].*>/i', $entity->content, $image); echo isset($image[1]) ? $linkPart1."<img class='award-teaser-image' src='".$image[1]."'>".$linkPart2 : ""; ?>

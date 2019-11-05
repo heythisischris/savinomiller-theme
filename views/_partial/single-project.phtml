@@ -121,7 +121,10 @@ p {
             }
             else if ($index==2 && count($portraitImages)>0) {
                 foreach($portraitImages as $innerIndex=>$innerImage) {
-                    if ($innerIndex==0) {
+                    if ($innerIndex==0 && !isset($portraitImages[1])) {
+                        echo $innerImage.'float:center;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
+                    }
+                    else if ($innerIndex==0) {
                         echo $innerImage.'float:left;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
                     }
                     else if ($innerIndex==1) {
@@ -144,8 +147,17 @@ p {
 
             if ($nextPortraitStack==1) {                
                 foreach($portraitImages as $innerIndex=>$innerImage) {
-                    if ($innerIndex==2||$innerIndex==3) {
+                    if ($innerIndex==2 && !isset($portraitImages[3])) {
                         echo $innerImage.'float:center;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
+                    }
+                    else if ($innerIndex==2) {
+                        echo $innerImage.'float:left;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
+                    }
+                    else if ($innerIndex==3) {
+                        echo $innerImage.'float:right;">';
+                        if (count($portraitImages)==2) {
+                            echo $image.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
+                        }
                     }
                     else {
                         $nextPortraitStack=2;

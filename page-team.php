@@ -40,6 +40,7 @@ if(!empty($casestudies)){
 <script>document.getElementById('current-about-name').innerHTML='Team'</script>
 <?php echo PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/background-image.phtml',$entity); ?>
 <style>
+    /*
 .large-grid .project-teaser {
     margin:0px;
     width:initial;
@@ -50,9 +51,9 @@ if(!empty($casestudies)){
 .page-template-page-team .large-grid {
     margin-left: 0px;
     margin-right: 0px;
-}
+}*/
 </style>
-    <div id="main-content" >
+    <div id="main-content" class="grid-padding">
         <div class="inner" style="margin-top:-90px;">
             <div class="page-content body-copy large-master-type large-grid" >
                 <?Php echo $collectionHtml; ?>

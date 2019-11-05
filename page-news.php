@@ -25,7 +25,7 @@ if(!empty($casestudies)){
     }
 }
 ?>
-    <div id="main-content" >
+    <div id="main-content" class="grid-padding">
         <div class="inner">
             <div class="page-content body-copy large-master-type" >
                 <?Php echo $collectionHtml; ?>

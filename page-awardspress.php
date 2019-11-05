@@ -22,9 +22,14 @@ if(!empty($casestudies)){
         $collectionHtml.= PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/award-teaser.phtml',$casestudy);
     }
 }
-?>
+?><style>
+.award-teaser {
+    height: 375px;
+    margin-bottom: 30px;
+}
+</style>
 <script>document.getElementById('current-about-name').innerHTML='Awards'</script>
-    <div id="main-content" >
+    <div id="main-content" class="grid-padding">
         <div class="inner">
             <div class="page-content body-copy large-master-type" >
                 <?Php echo $collectionHtml; ?>

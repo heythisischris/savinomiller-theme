@@ -13,7 +13,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'contact') || strpos($_SERVER['REQUEST_URI']
 <style>
     .about-banner-image {
         width:100vw;
-        height:500px;
+        height:605px;
         object-fit:cover;
     }
     p {
@@ -25,6 +25,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'contact') || strpos($_SERVER['REQUEST_URI']
     .about-link {
         color: #666666 !important;
         text-decoration: none;
+        font-size:20px !important;
     }
 </style>
 <div id="main-content" >

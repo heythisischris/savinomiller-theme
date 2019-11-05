@@ -32,8 +32,8 @@ if(!empty($casestudies)){
     //echo '<script>console.log('.json_encode($casestudies).');</script>';
 }
 ?>
-<div id="main-content">
-    <div class="inner" style="margin-left:26px;">
+<div id="main-content" class="grid-padding">
+    <div class="inner">
         <div class="large-grid" style="text-align:center" >
             <?php echo $collectionHtml; ?>
         </div>
@@ -56,21 +56,6 @@ if(!empty($casestudies)){
             }
             ?>
             //$('.project-category-menu').fadeIn('slow');
-
-            if($('html').hasClass('no-touch')){
-                $('.project-teaser').hover(function() {
-                    $('.project-teaser').removeClass('hover');
-                    $('.project-teaser').addClass('faded');
-
-                    $(this).removeClass('faded');
-                    $(this).addClass('hover');
-                },
-                function() {
-                    $('.project-teaser').removeClass('hover');
-                    $('.project-teaser').removeClass('faded');
-                });
-            }
-
 
         });
 
