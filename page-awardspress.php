@@ -25,7 +25,7 @@ if(!empty($casestudies)){
 ?><style>
 .award-teaser {
     height: 375px;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
 }
 </style>
 <script>document.getElementById('current-about-name').innerHTML='Awards'</script>

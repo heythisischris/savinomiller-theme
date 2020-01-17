@@ -22,8 +22,14 @@ if(!empty($categories)){
     }
 }
 ?>
-
-
+<style>
+@media only screen
+and (min-width : 800px){
+    .layer-menu, .project-category-menu {
+        margin-left: -6px;
+    }
+}
+</style>
 <div id="main-content"  >
 
     <div class="inner">

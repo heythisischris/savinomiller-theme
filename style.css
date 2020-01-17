@@ -378,6 +378,7 @@ h2 {
     font-size:20px;
     line-height: 30px;
     text-align: left;
+    color: #898D8D;
 }
 @media only screen
 and (max-width : 600px) {
@@ -463,7 +464,7 @@ and (max-width : 600px) {
 .page-template-page-awardspress .page-content.large-master-type,
 .page-template-page-news  .page-content.large-master-type {
     opacity: 1;
-    margin-top: -80px;
+    margin-top: -90px;
 }
 
 
@@ -938,6 +939,9 @@ and (max-width : 680px) and (min-width: 10px){
     margin-bottom: 10px;
     width: 100%;
     color: #7B8080;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .award-teaser-image {
@@ -1189,6 +1193,11 @@ and (max-width : 800px){
     font-family: "Segoe UI";
     text-align: left;
     margin-bottom: 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 50px;
 }
 .news-description {
     font-size: 20px;
@@ -1196,6 +1205,7 @@ and (max-width : 800px){
     font-family: "Segoe UI Light";
     text-align: left;
     line-height: 22px;
+    hyphens: auto;
 }
 
 .grid-padding {
@@ -1205,10 +1215,8 @@ and (max-width : 800px){
 
 @media only screen
 and (max-width : 800px){
-
     .grid-padding {
         padding-left:0px;
         padding-right:0px;
     }
-
 }

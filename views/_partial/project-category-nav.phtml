@@ -18,6 +18,8 @@ function wp_list_categories_for_post_type($post_type, $args = '') {
         $args .= 'exclude='.implode(',', $exclude);
     }
 
+    $args .= '&orderby=description&order=ASC';
+
     // List categories
     return wp_list_categories($args);
 }
@@ -28,6 +30,6 @@ function wp_list_categories_for_post_type($post_type, $args = '') {
 
 <ul class="cat-nav sub-nav" >
     <?php
-    echo str_replace('category/','portfolio/?cat=',wp_list_categories_for_post_type('smprojectentity','echo=0&title_li=0'));
+    echo str_replace('category/','portfolio/?cat=',wp_list_categories_for_post_type('smprojectentity','echo=0&title_li=0&use_desc_for_title=0'));
     ?>
 </ul>

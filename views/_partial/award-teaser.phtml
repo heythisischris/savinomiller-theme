@@ -25,7 +25,7 @@ if (strpos($_SERVER['REQUEST_URI'], 'awards')) {
     <?php if (isset($linkToProject)) { ?></a><?php } ?>
     <div class="award-teaser-title"><?php echo $entity->title."<br>".$titleOfProject; ?></div>
 </div>
-<?php } else {
+<?php } else if ($entity->id!==1158) {
     ?>
 <div class='award-teaser' >
     <?php if ($entity->link!=="") {$linkPart1="<a href='".$entity->link."'>";$linkPart2="</a>";} else {$linkPart1="";$linkPart2="";} ?>
@@ -33,10 +33,10 @@ if (strpos($_SERVER['REQUEST_URI'], 'awards')) {
     <?php $dateArray = explode(".",$entity->title); if (isset($dateArray[2])) { $newsDate1 = $dateArray[0].'.'.$dateArray[1].'.'.substr($dateArray[2],0,2); $newsDate2=substr($dateArray[2], 2); ?>
     <div class="news-date"><?php echo $newsDate1; ?></div>
     <div class="news-title"><?php echo $newsDate2; ?></div>
-    <?php } else {$dateArray = explode("20",$entity->title); $newsDate1=$dateArray[0]."20".substr($dateArray[1],0,2); $newsDate2=substr($dateArray[1], 2); ?>
+    <?php } else {$dateArray = explode("20",$entity->title); if (count($dateArray)>1) {$newsDate1=$dateArray[0]."20".substr($dateArray[1],0,2); $newsDate2=substr($dateArray[1], 2);} else {$newsDate1='2020'; $newsDate2=json_encode($entity);} ?>
     <div class="news-date"><?php echo $newsDate1; ?></div>
     <div class="news-title"><?php echo $newsDate2; ?></div>
     <?php } ?>
-    <div class="news-description"><?php echo preg_replace("/<img[^>]+\>/i", "", preg_replace("/<video[^>]+\>/i", "", $entity->content)); ?></div>
+    <div class="news-description"><?php echo preg_replace("/<p[^>]*>&nbsp;<\\/p[^>]*>/", '',preg_replace("/<img[^>]+\>/i", "", preg_replace("/<video[^>]+\>/i", "", $entity->content))); ?></div>
 </div>
 <?php } ?>

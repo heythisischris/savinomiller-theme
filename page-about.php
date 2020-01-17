@@ -40,14 +40,14 @@ if (strpos($_SERVER['REQUEST_URI'], 'mission')) {
         font-size:20px !important;
     }
     .about-block {
-        text-align: left;
+        text-align: justify;
         padding-left: 20%;
         padding-right: 20%;
         padding-top: 20px;
         padding-bottom: 20px;
     }
     .about-header {
-        font-weight: 600;
+        font-family: 'Segoe UI Semibold';
     }
     .top-block {
         font-size: 24px;
@@ -92,14 +92,14 @@ if (strpos($_SERVER['REQUEST_URI'], 'mission')) {
         <div class="page-content2">
             <div class="about-block top-block" style="text-align:center;">Savino & Miller Design Studio works to preserve, enhance, and transform environments with the purpose to enrichen human experience, and promote ecological stewardship.</div>
             <div class="about-block top-block" style="text-align:center;">We believe that design should consider and respect context, bring people together, and foster a greater awareness of place.</div>
-            <img class='about-banner-image left-image' style='margin-top:40px;margin-bottom:40px;float:left;width:39.5%;' src='<?php echo TEMPLATE_URI ?>/img/studio/2.jpg'>
-            <img class='about-banner-image right-image' style='margin-top:40px;margin-bottom:40px;float:right;width:60%' src='<?php echo TEMPLATE_URI ?>/img/studio/3.jpg'>
+            <img class='about-banner-image left-image' style='margin-top:40px;margin-bottom:40px;float:left;width:29.5%;object-position: 75% 0;' src='<?php echo TEMPLATE_URI ?>/img/studio/2.jpg'>
+            <img class='about-banner-image right-image' style='margin-top:40px;margin-bottom:40px;float:right;width:70%' src='<?php echo TEMPLATE_URI ?>/img/studio/3.jpg'>
             <div class="about-block about-header">APPROACH</div>
             <div class="about-block">We are a team of professionals dedicated to improving and transforming our open spaces and built environments. Our guiding principle is to recognize the unique qualities inherent in each project.</div>
             <div class="about-block" style="text-align:center;font-style:italic;">WE ENGAGE THE CULTURAL AND ENVIRONMENTAL CONTEXT OF THE SITE WITH <b>IMAGINATION, ECOLOGICAL SENSITIVITY, RESILIENT PRACTICES</b> AND <b>THOUGHTFUL DESIGN</b>.</div>
             <div class="about-block">Our design process is a creative and collaborative exploration of ideas. SMDS integrates the diverse disciplines of landscape architecture, architecture, urban design, and fine arts, challenging our design team to view each project as a fresh canvas, specific to each site and client.</div>
             <div class="about-block">Careful attention to details helps to engender a sense of place and creates a unique experience. The firm is highly accomplished in bringing their projects to fruition with artistry and ecological sensitivity.</div>
-            <img class='about-banner-image left-image' style='margin-top:40px;margin-bottom:40px;float:left;width:60%;' src='<?php echo TEMPLATE_URI ?>/img/studio/2.jpg'>
+            <img class='about-banner-image left-image' style='margin-top:40px;margin-bottom:40px;float:left;width:60%;' src='<?php echo TEMPLATE_URI ?>/img/studio/4.jpg'>
             <div class='about-banner-image right-image right-block' style='margin-top:40px;margin-bottom:40px;float:right;width:39.5%;background-color:#62B0BB;color:#ffffff;text-align:center;font-size:24px;line-height:50px;display: flex;align-items: center;'><div style="padding:10%;">As sculptors of the spatial environment, our aim is to create meaningful experiences and <b>“carve the very atmosphere and medium”</b> through which we move, breathe, and experience our lives.</div></div>
             <div class="about-block about-header">HISTORY</div>
             <div class="about-block">Savino & Miller Design Studio began in 1985 with the partnership of Adriana Savino and Barry Miller as a collaborative approach with architecture, landscape architecture, urban design and regional planning. Their first projects focused on the Art Deco District in Miami Beach where they showed how small gardens, courtyards and the outdoor terraces further contribute in the resurgence of the district framing, complementing and animating the beautiful architecture.</div>

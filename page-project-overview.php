@@ -32,6 +32,25 @@ if(!empty($casestudies)){
     //echo '<script>console.log('.json_encode($casestudies).');</script>';
 }
 ?>
+<style>
+@media only screen
+and (max-width: 2600px) and (min-width: 1200px){
+    .project-teaser {
+        width: 31.33% !important;
+        margin: 1% !important;
+        margin-bottom:-20px !important;
+    }
+    .large-grid .project-teaser img {
+        height: 60vh !important;
+    }
+}
+@media only screen
+and (min-width : 800px){
+    .layer-menu, .project-category-menu {
+        margin-left: -6px;
+    }
+}
+</style>
 <div id="main-content" class="grid-padding">
     <div class="inner">
         <div class="large-grid" style="text-align:center" >

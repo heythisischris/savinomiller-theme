@@ -19,9 +19,9 @@ $casestudies = $catTagSearchController->entityCollection;
 $collectionHtml = '';
 if(!empty($casestudies)){
     foreach($casestudies as $index=>$casestudy){
-        if ($index!==0) {
+        //if ($index!==0) {
         $collectionHtml.= PartialRenderer::render(TEMPLATE_DIR.'/views/_partial/award-teaser.phtml',$casestudy);
-        }
+        //}
     }
 }
 ?>

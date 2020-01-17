@@ -2,7 +2,6 @@
 $entity = $partialObj;
 ?>
 <style>
-    
 .single-project-title {
     line-height:25px;margin-left:28px;
 }
@@ -37,6 +36,24 @@ p {
     margin-block-start: 0em;
     margin-block-end: -0.4em;
 }
+@media only screen
+and (min-width : 0px) and (max-width : 460px){
+    iframe {
+        height: 200px !important;
+    }
+}
+@media only screen
+and (min-width : 461px) and (max-width : 750px){
+    iframe {
+        height: 350px !important;
+    }
+}
+@media only screen
+and (min-width : 751px) and (max-width : 1000px){
+    iframe {
+        height: 500px !important;
+    }
+}
 </style>
 <div id="single-project-wrapper" style="margin-top:120px;" >
         <?php
@@ -58,6 +75,10 @@ p {
 
         $portraitImages=[];
         $landscapeImages=[];
+        
+        preg_match('/<iframe.*?\/iframe>/i', $entity->content, $iframe);
+        if ($iframe) {$landscapeImages[] = '<iframe id="0" style="width:100%;height:768px;" '.substr($iframe[0],7).'<img';}
+
         foreach($entity->imageGallery1 as $index=>$image){
             $image->resize(1600,2600,0);
             $contentPath = str_replace($homeUrl,'',$image->urlsized);
@@ -106,7 +127,7 @@ p {
             if ($index==0 || $index==1) {
                 echo $image.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
                 if ($index==0) {
-                    echo "<div id='1' class='single-project-description' style='margin-top:15px;'>".MyHelpers::pToEmptyLine($entity->content)."</div>"; $anchorIndex+=1;
+                    echo "<div id='1' class='single-project-description' style='margin-top:15px;'>".MyHelpers::pToEmptyLine(preg_replace('/<iframe.*?\/iframe>/i','', $entity->content))."</div>"; $anchorIndex+=1;
                 }
                 if (!array_key_exists($index+1,$landscapeImages)) {
                     foreach($portraitImages as $innerIndex=>$innerImage) {
@@ -188,7 +209,7 @@ p {
             return elementBottom > viewportTop && elementTop < viewportBottom;
         };
         var bottomOfPage=false;
-        var id=-1;
+        var id=0;
         $("#dynamicDown").click(function(event){
             if (!bottomOfPage) {
                 if (id==-1) {id=0;}
@@ -207,7 +228,7 @@ p {
             else {
                 $('html,body').animate({scrollTop:  0},'slow');
                 bottomOfPage=false;
-                id=-1;
+                id=2;
             }
         });
         $("#dynamicDownImg").on({

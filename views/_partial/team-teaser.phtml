@@ -21,7 +21,7 @@ if (!strpos($_SERVER['REQUEST_URI'], 'staff')) {
         margin-left: 0px;
         margin-right:3vw;
         float:left;
-        margin-bottom: 400px;
+        margin-bottom: 65vh;
     }
     #Title {
         color: #666666;
@@ -107,7 +107,7 @@ else {
     ?>
     <div class='person-info' >
         <br>
-        <h2 ><?php echo $entity->title; ?></h2>
+        <h2 style="font-family: 'Segoe UI';"><?php echo $entity->title; ?></h2>
         <span class="subline" ><?php echo $entity->corporateTitle; ?></span>
         <!--<div class='person-cv' >
             <php echo $entity->cv; ?>

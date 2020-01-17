@@ -23,6 +23,7 @@ $metaTagController = new SMMetatagController($entity);
     <base href="<?php echo home_url(); ?>" >
     <link rel="canonical" href="<?php echo $entity->url; ?>" />
 
+    <link rel="shortcut icon" type="image/png" href="cms-site-admin/wp-content/uploads/2019/12/favicon.png"/>
 
     <meta name="description" content="<?php echo $metaTagController->description; ?>" />
     <meta name="generator" content="http://tnbw.com - Till Bergs" />
