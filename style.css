@@ -276,8 +276,8 @@ header nav .sub-nav a:hover,
 .mobile-menu .current-menu-item a:visited,
 header nav .current-menu-item a:link,
 header nav .current-menu-item a:visited{
-    /*color: #48B9C7;*/
-    color: #666;
+    /* color: #48B9C7; */
+    /* color: #666; */
 }
 
 header nav .sub-nav .current-menu-item a:link {
@@ -759,6 +759,10 @@ body.page-template-page-portfolio {
     padding-top: 10px;
 }
 
+.menu-about-sub-menu-container {
+    width: 90px;
+}
+
 #layer-menu-target-2 .layer-menu,
 #layer-menu-target .layer-menu {
     background: none repeat scroll 0 0 rgba(255, 255, 255, 1);
@@ -921,7 +925,7 @@ and (max-width : 680px) and (min-width: 10px){
         width: 100%;
         float: left;
         margin: 0%;
-        margin-bottom: 25px;
+        margin-bottom: 20px !important;
     }
     .page-template-page-awardspress .page-content.large-master-type {
         text-align: center;
@@ -1106,11 +1110,13 @@ footer {
 .page-template-page-team  #layer-menu-target-2,
 .page-template-page-awardspress #layer-menu-target-2,
 .page-template-page-news #layer-menu-target-2,
+.page-template-page-homepage #layer-menu-target-2,
 
 .page-template-default  #layer-menu-target,
 .page-template-page-team  #layer-menu-target,
 .page-template-page-awardspress #layer-menu-target,
-.page-template-page-news #layer-menu-target {
+.page-template-page-news #layer-menu-target,
+.page-template-page-homepage #layer-menu-target {
     margin-left: -5px;
 }
 

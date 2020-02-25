@@ -52,8 +52,6 @@
             <div id="about-menu" class="" >
                 <?Php echo wp_nav_menu(array('theme_location' => 'about-sub-menu')); ?>
             </div>
-            <div id="current-about-name" >
-            </div>
         </nav>
 
         <div class="clearfix">&nbsp;</div>
@@ -138,6 +136,15 @@ $(document).ready(function(){
 
     $('#layer-menu-target .menu-about-sub-menu-container ul').addClass('sub-nav');
     $('#layer-menu-target-2 .menu-about-sub-menu-container ul').addClass('sub-nav');
+
+
+    $('.project-category-menu').on( "mouseleave", function() {
+       toggleCategories();
+    });
+    $('.menu-about-sub-menu-container').on( "mouseleave", function() {
+       toggleAbout();
+    });
+
 });
 
 

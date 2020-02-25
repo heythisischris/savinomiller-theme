@@ -144,6 +144,9 @@ and (min-width : 751px) and (max-width : 1000px){
                 foreach($portraitImages as $innerIndex=>$innerImage) {
                     if ($innerIndex==0 && !isset($portraitImages[1])) {
                         echo $innerImage.'float:center;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
+                        if ($landscapeImages[2]) {
+                            echo $image.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
+                        }
                     }
                     else if ($innerIndex==0) {
                         echo $innerImage.'float:left;" '.'id="'.$anchorIndex.'">'; $anchorIndex+=1;
@@ -268,7 +271,12 @@ and (min-width : 751px) and (max-width : 1000px){
             }
         });
         window.onscroll = function(ev) {
-            if ((window.innerHeight + window.scrollY + 300) >= document.body.offsetHeight) {
+            //window.innerHeight doesn't register the height of the last 2 portrait images in 'Biscayne Park Signage', so we're adding an exception here
+            let exceptionOffset=0;
+            if (<?php echo $entity->id ?>==885) {
+                exceptionOffset=-window.innerHeight;
+            }
+            if ((window.innerHeight + window.scrollY + 300 + exceptionOffset) >= document.body.offsetHeight) {
                 $("#dynamicDownImg").css("transition", "0.3s ease-in-out");
                 $("#dynamicDownImg").css('transform', 'rotate(90deg) scaleX(-1)');
                 bottomOfPage=true;
