@@ -60,6 +60,10 @@ if(!empty($casestudies)){
 #main-content {
     margin-bottom: 85vh;
 }
+.person-info {
+    margin-bottom: 30px;
+    margin-top: -10px;
+}
 @media only screen
 and (max-width: 2600px) and (min-width: 1200px){
     .grid-padding {
@@ -67,6 +71,19 @@ and (max-width: 2600px) and (min-width: 1200px){
         padding-right: 200px;
     }
 }
+@media only screen
+and (min-width : 1600px) and (max-width : 2600px){
+    .about-banner-image {
+        margin-top:120px !important;
+    }
+}
+@media only screen
+and (min-width : 1280px) and (max-width : 1600px){
+    .about-banner-image {
+        margin-top:20px !important;
+    }
+}
+
 @media only screen
 and (min-width : 0px) and (max-width : 460px){
     .about-banner-image {
@@ -110,7 +127,7 @@ and (min-width : 0px) and (max-width : 460px){
 </style>
     <div id="main-content" class="grid-padding">
     <?php if (strpos($_SERVER['REQUEST_URI'], 'staff')) { ?>
-    <img class='about-banner-image' style='margin-top:120px;margin-bottom:20px;' src='<?php echo TEMPLATE_URI ?>/img/studio/1.jpg'>
+    <img class='about-banner-image' style='margin-bottom:20px;' src='<?php echo TEMPLATE_URI ?>/img/studio/1.jpg'>
     <?php } ?>
         <div class="inner" style="margin-top:-90px;">
             <div class="page-content body-copy large-master-type large-grid">
